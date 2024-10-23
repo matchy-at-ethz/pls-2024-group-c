@@ -1,9 +1,10 @@
 #!/usr/bin/python
 import time
 
+
 class PID:
 
-    def __init__(self, P=0.2, I=0.0, D=0.0): #initializes the required parameters
+    def __init__(self, P=0.2, I=0.0, D=0.0):  # initializes the required parameters
         self.Kp = P
         self.Ki = I
         self.Kd = D
@@ -12,7 +13,7 @@ class PID:
         self.current_time = time.time()
         self.last_time = self.current_time
 
-        self.clear() #reset all "process" parameters although here it initializes them
+        self.clear()  # reset all "process" parameters although here it initializes them
 
     def clear(self):
         """
@@ -36,30 +37,32 @@ class PID:
         takes a value then calculates through integration derivatie and difference to the setpoint a output which it sets as the attribute output
         """
 
-        #basic error or difference between setpoint/ runningvarable
-        #-----------------------------
-        error = self.SetPoint - feedback_value 
+        # basic error or difference between setpoint/ runningvarable
+        # -----------------------------
+        error = self.SetPoint - feedback_value
         self.current_time = time.time()
-        delta_time = self.current_time - self.last_time  
-        delta_error = error - self.last_error 
-        
-        if (delta_time >= self.sample_time): #intergal term and derivative term
+        delta_time = self.current_time - self.last_time
+        delta_error = error - self.last_error
+
+        if delta_time >= self.sample_time:  # intergal term and derivative term
             self.PTerm = self.Kp * error
-            self.ITerm += error * delta_time #integral term
-            if (self.ITerm < -self.windup_guard):
+            self.ITerm += error * delta_time  # integral term
+            if self.ITerm < -self.windup_guard:
                 self.ITerm = -self.windup_guard
-            elif (self.ITerm > self.windup_guard):
+            elif self.ITerm > self.windup_guard:
                 self.ITerm = self.windup_guard
             self.DTerm = 0.0
-            if delta_time > 0: 
-                self.DTerm = delta_error / delta_time #derivative term
+            if delta_time > 0:
+                self.DTerm = delta_error / delta_time  # derivative term
             self.last_time = self.current_time
             self.last_error = error
-            self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) #output is the sum of errors
-            
-#---------------------------------------
-#setfunctions. change an attribute, same as instance.attribute = value
-            
+            self.output = (
+                self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm)
+            )  # output is the sum of errors
+
+    # ---------------------------------------
+    # setfunctions. change an attribute, same as instance.attribute = value
+
     def setKp(self, proportional_gain):
         self.Kp = proportional_gain
 

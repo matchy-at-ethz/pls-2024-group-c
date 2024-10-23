@@ -1,0 +1,13 @@
+README.md
+setup.py
+Main/__init__.py
+Main/GUI/App.py
+Main/GUI/Interface.py
+Main/GUI/UIElements.py
+Main/Utilities/DataStructModule.py
+Main/Utilities/PlotStructModule.py
+gillespie.egg-info/PKG-INFO
+gillespie.egg-info/SOURCES.txt
+gillespie.egg-info/dependency_links.txt
+gillespie.egg-info/entry_points.txt
+gillespie.egg-info/top_level.txt

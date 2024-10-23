@@ -8,8 +8,8 @@ plot = PlotStruct(model)
 stepsize = 50
 
 while True:
-    
-    if keyboard.is_pressed('esc'):
+
+    if keyboard.is_pressed("esc"):
         break
 
     i = 0
@@ -18,8 +18,6 @@ while True:
         model.update()
         continue
 
-
-    
     time.sleep(1)
     print("1")
     continue
@@ -27,5 +25,3 @@ while True:
 
 plot = PlotStruct(model)
 plot.createPlotRandTraject(2)
-
-
