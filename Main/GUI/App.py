@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 """CLI interface for Gillerspie Simulation"""
-
 import argparse
 import logging
 import sys
 from enum import Enum
 
-from .Interface import Root
-from Version import __version__
+from .Interface import SceneTree
+import Projectconfiguration
 
 LOGGER = logging.getLogger(__name__)
 
@@ -32,8 +31,8 @@ def parse_args() -> argparse.Namespace:
     # set metadata
     description = f"{sys.modules[__name__].__doc__}\n\n" ""
     epilog = (
-        f"%(prog)s v{__version__}, (c) 2024 by Group C"
-        "(zavolab-biozentrum@unibas.ch)"
+        f"%(prog)s v{Projectconfiguration.VERSION}, (c) 2024 by {Projectconfiguration.AUTHOR}"
+        f"({Projectconfiguration.MAIL})"
     )
 
     # instantiate parser
@@ -79,7 +78,7 @@ def setup_logging(verbosity: str = "INFO") -> None:
 
 def main() -> None:
     """Entry point for CLI executable."""
-    app = Root()  # Assuming Root is the main Tkinter window class
+    app = SceneTree()  # Assuming Root is the main Tkinter window class
 
     LOGGER.info("GUI closed.")
     sys.exit(0)

@@ -7,7 +7,7 @@ import sys
 from enum import Enum
 
 from .GUI.Interface import Root
-from Version import __version__
+import Projectconfiguration 
 
 LOGGER = logging.getLogger(__name__)
 
@@ -32,8 +32,8 @@ def parse_args() -> argparse.Namespace:
     # set metadata
     description = f"{sys.modules[__name__].__doc__}\n\n" ""
     epilog = (
-        f"%(prog)s v{__version__}, (c) 2024 by Group C"
-        "(zavolab-biozentrum@unibas.ch)"
+        f"%(prog)s v{Projectconfiguration.VERSION}, (c) 2024 by {Projectconfiguration.AUTHOR}"
+        f"({Projectconfiguration.MAIL})"
     )
 
     # instantiate parser

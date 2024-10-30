@@ -1,2 +1,3 @@
 [console_scripts]
 gillespie-gui = Main.GUI.App:main
+gillespie-simulate = Main.App:main
