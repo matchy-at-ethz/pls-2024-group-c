@@ -1,6 +1,4 @@
-import tkinter as tk
-from tkinter import filedialog, ttk, font
-import Pmw
+
 from pathlib import Path
 import os
 import sys
@@ -24,11 +22,7 @@ class DefaultScene(BaseScene):
 
     def initializeWidgets(self):
 
-        self.ParametersPanel.config(background="red")
-        self.PlotPanel.config(background="green")
-
-        self.StartButton = tk.Button(master= self.ParametersPanel, text="start", command= self.runAnalysis)
-        self.StartButton.place(x=100, y=200)
+        pass
 
     @property
     def parameters(self):

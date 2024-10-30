@@ -1,13 +1,8 @@
 import tkinter as tk
 from tkinter import filedialog, ttk, font
-import Pmw
 from pathlib import Path
 import os
 import sys
-import threading
-import multiprocessing
-import time
-
 
 if __name__ == "__main__":                          #I COULDNT FIGURE OUT WHY FOR THE LOVE OF GOD IT REQUIRES DIFFERENT IMPORT PATHS REGARDING HOW IT IS RUN
     from Commands import CommandStruct
@@ -28,25 +23,88 @@ if not __name__ == "__main__":
 ROOT_DIR: Path = Path(__file__).parent.parent.parent.resolve()
 exec(open(ROOT_DIR / "Projectconfiguration.py", encoding="utf-8").read())
 
+from PyQt5 import QtCore, QtGui, QtWidgets
+from qtpy.QtWidgets import QApplication, QMainWindow
+from qtpy.QtGui import QIcon
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow, ROOT_DIR):
+        MainWindow.setObjectName(f"{NAME} v{VERSION}")
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        MainWindow.setFont(font)
+        MainWindow.setWindowIcon(QIcon(os.path.join(ROOT_DIR, r"Resources\Logo.ico")))
+        
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        MainWindow.setFont(font)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
+        self.centralwidget.setSizePolicy(sizePolicy)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setTabPosition(QtWidgets.QTabWidget.North)
+        self.tabWidget.setTabShape(QtWidgets.QTabWidget.Rounded)
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tab.sizePolicy().hasHeightForWidth())
+        self.tab.setSizePolicy(sizePolicy)
+        self.tab.setObjectName("tab")
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setEnabled(True)
+        self.tab_2.setObjectName("tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
+        self.verticalLayout.addWidget(self.tabWidget)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1203, 23))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.menubar.setFont(font)
+        self.menubar.setObjectName("menubar")
+        self.menuData = QtWidgets.QMenu(self.menubar)
+        self.menuData.setObjectName("menuData")
+        MainWindow.setMenuBar(self.menubar)
+        self.menubar.addAction(self.menuData.menuAction())
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+        self.menuData.setTitle(_translate("MainWindow", "Data"))
+
 
 class SceneTree:
 
     def __init__(self) -> None:
-
-        self.processes = ProcessStruct(self)
+        
         self.setup_attributes()
 
         self.initialize_main_window()
 
-        self.setup_windows()
+        #self.setup_windows()
 
-        self.setup_event_bindings()
+        #self.setup_event_bindings()
 
-        self.root.protocol(
-            "WM_DELETE_WINDOW", self.root.quit
-        )  # Properly handle window close
+        sys.exit(app.exec_())
 
-        self.root.mainloop()
 
         pass
 
@@ -55,27 +113,45 @@ class SceneTree:
 
     def setup_attributes(self):
         self.current_scene = None
+        self.processes = ProcessStruct(self)
+
+        self.SideWindow = QtWidgets.QDialog()
+        self.MainWindow = QtWidgets.QMainWindow()
+        self.MainWindow.setWindowOpacity(0)
+        self.MainWindow.show()
+        
+
+        self.screen_geometry = QApplication.primaryScreen().geometry()
+        self.screen_width = self.screen_geometry.width()
+        self.screen_height = self.screen_geometry.height()
+
+        # Set window dimensions to half of the screen size
+        self.window_width = self.screen_width // 2
+        self.window_height = self.screen_height // 2
+
+
+        # Center the window on the screen
+        self.x = (self.screen_width - self.window_width) // 2
+        self.y = (self.screen_height - self.window_height) // 2
+
+
+
+
+    def loadConfigurations(self):
+
+        pass
+
 
     def initialize_main_window(self):
 
-        current_file_path = Path(__file__).resolve()
-        root_path = current_file_path.parent.parent.parent
 
-        self.root = tk.Tk(screenName="Mainwindow")
-        self.root.iconbitmap(os.path.join(root_path, r"Resources\Logo.ico"))
-        self.root.title(f"{NAME} v{VERSION}") # the yellow underline is fine
-
-        self.screen_width = self.root.winfo_screenwidth()
-        self.screen_height = self.root.winfo_screenheight()
-
-        self.root.withdraw()
-        LoadWindow(self.root, self)
-        self.root.deiconify()
-
-        Pmw.initialise()
-
-
-
+        self.MainWindow.setWindowOpacity(0)
+        self.loadWindow = LoadWindow(scene_tree=self, MainWindow=self.SideWindow)
+        
+        self.screen = Ui_MainWindow()
+        self.MainWindow.resize(self.window_width, self.window_height)
+        self.MainWindow.move(self.x, self.y)
+        self.screen.setupUi(self.MainWindow, ROOT_DIR)
 
 
     def loaddata(self):
@@ -275,4 +351,7 @@ class ScenePort:
 
 
 if __name__ == "__main__":
-    interface1 = SceneTree()
+    app = QApplication(sys.argv)
+    a = SceneTree()
+
+    
