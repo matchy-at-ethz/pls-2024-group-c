@@ -64,7 +64,7 @@
      <x>0</x>
      <y>0</y>
      <width>1203</width>
-     <height>23</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="font">
@@ -76,9 +76,160 @@
     <property name="title">
      <string>Data</string>
     </property>
+    <widget class="QMenu" name="menuExport_Config_to">
+     <property name="title">
+      <string>Export Config to..</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionCsv"/>
+     <addaction name="actionH5"/>
+     <addaction name="actionJson"/>
+     <addaction name="actionYaml"/>
+    </widget>
+    <addaction name="actionLoad"/>
+    <addaction name="actionNew"/>
+    <addaction name="separator"/>
+    <addaction name="menuExport_Config_to"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionFullscreen"/>
+    <addaction name="separator"/>
+    <addaction name="actionColors"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionDocumentation"/>
+    <addaction name="actionGit"/>
+    <addaction name="actionReleases"/>
+    <addaction name="separator"/>
+    <addaction name="actionLicence"/>
+   </widget>
+   <widget class="QMenu" name="menuAnalyze">
+    <property name="title">
+     <string>Analyze</string>
+    </property>
+    <widget class="QMenu" name="menuExport_History_to">
+     <property name="title">
+      <string>Export History to </string>
+     </property>
+     <addaction name="actionJson_2"/>
+     <addaction name="actionCsv_2"/>
+     <addaction name="actiontxt"/>
+    </widget>
+    <addaction name="menuExport_History_to"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionKey_Binding"/>
    </widget>
    <addaction name="menuData"/>
+   <addaction name="menuView"/>
+   <addaction name="menuAnalyze"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp"/>
   </widget>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </action>
+  <action name="actionCsv">
+   <property name="text">
+    <string>Csv</string>
+   </property>
+  </action>
+  <action name="actionH5">
+   <property name="text">
+    <string>H5</string>
+   </property>
+  </action>
+  <action name="actionJson">
+   <property name="text">
+    <string>Json</string>
+   </property>
+  </action>
+  <action name="actionYaml">
+   <property name="text">
+    <string>Yaml</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionKey_Binding">
+   <property name="text">
+    <string>Key Binding</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionGit">
+   <property name="text">
+    <string>Git</string>
+   </property>
+  </action>
+  <action name="actionReleases">
+   <property name="text">
+    <string>Releases</string>
+   </property>
+  </action>
+  <action name="actionLicence">
+   <property name="text">
+    <string>Licence</string>
+   </property>
+  </action>
+  <action name="actionFullscreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fullscreen</string>
+   </property>
+  </action>
+  <action name="actionColors">
+   <property name="text">
+    <string>Colors</string>
+   </property>
+  </action>
+  <action name="actionJson_2">
+   <property name="text">
+    <string>Json</string>
+   </property>
+  </action>
+  <action name="actionCsv_2">
+   <property name="text">
+    <string>Csv</string>
+   </property>
+  </action>
+  <action name="actiontxt">
+   <property name="text">
+    <string>Text</string>
+   </property>
+  </action>
+  <action name="actionCreate_Plot">
+   <property name="text">
+    <string>Create Plot</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

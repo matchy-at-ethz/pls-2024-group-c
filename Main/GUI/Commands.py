@@ -29,6 +29,10 @@ class CommandStruct:
     def saveConfig(self):
          pass
     
+    def exit(self):
+        self.SceneTree.MainWindow.close()
+        pass
+    
 
     def exportConfig(self, type : str):
          pass

@@ -18,6 +18,7 @@ class LoadWindow(object):
         
         # Load and scale the image
         self.MainWindow = MainWindow
+        self.MainWindow.setIconVisibleInMenu(False)
         self.MainWindow.setModal(True)
         image = Image.open(os.path.join(ROOT_DIR,r"Resources\image.png"))
         new_size = (image.width // 5, image.height // 5)
@@ -55,7 +56,7 @@ class LoadWindow(object):
         self.banner.setStyleSheet("background-color: #BE632E;")
 
         # Title label
-        title_font = QtGui.QFont("Times", 44)
+        title_font = QtGui.QFont("Times", 30)
         self.title_label = QtWidgets.QLabel(NAME, self.banner)
         self.title_label.setFont(title_font)
         self.title_label.setStyleSheet("color: white;")
