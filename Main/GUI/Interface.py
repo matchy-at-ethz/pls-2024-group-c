@@ -70,7 +70,6 @@ class SceneTree:
         self.x = (self.screen_width - self.window_width) // 2
         self.y = (self.screen_height - self.window_height) // 2
 
-
     def loadConfigurations(self):
 
         pass
@@ -87,7 +86,7 @@ class SceneTree:
         self.MainWindow.move(self.x, self.y)
         #self.MainWindow.showFullScreen()
         self.screen.setupUi(self.MainWindow, ROOT_DIR , commands = self.command)
-        self.branch = self.screen.centralwidget
+        self.branch = self.screen.frame
 
 
     def loaddata(self):
