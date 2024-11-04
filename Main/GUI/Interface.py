@@ -36,7 +36,7 @@ class SceneTree:
 
         self.initialize_main_window()
 
-        #self.setup_windows()
+        self.setup_windows()
 
         #self.setup_event_bindings()
 
@@ -87,6 +87,7 @@ class SceneTree:
         self.MainWindow.move(self.x, self.y)
         #self.MainWindow.showFullScreen()
         self.screen.setupUi(self.MainWindow, ROOT_DIR , commands = self.command)
+        self.branch = self.screen.centralwidget
 
 
     def loaddata(self):
@@ -94,6 +95,8 @@ class SceneTree:
 
     def setup_windows(self):
 
+        self.active_scene = DefaultScene(self.command)
+        self.active_scene.setupUi(self.branch)
         return
 
 
