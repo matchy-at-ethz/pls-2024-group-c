@@ -27,6 +27,11 @@ exec(open(ROOT_DIR / "Projectconfiguration.py", encoding="utf-8").read())
 
 
 class SceneTree:
+    """Main Script that controls the interface
+
+    Args:
+        verbosity: Level of logging verbosity.
+    """
 
     def __init__(self) -> None:
 
@@ -47,6 +52,8 @@ class SceneTree:
     # setup functions
 
     def setup_attributes(self):
+        """Initializes the Attributes of the class
+    """
         self.current_scene = None
         self.processes = ProcessStruct(self)
         self.command = CommandStruct(self)
@@ -71,13 +78,21 @@ class SceneTree:
         self.y = (self.screen_height - self.window_height) // 2
 
     def loadConfigurations(self):
+        """Load the configurations file for saved parameters or other options
+
+    return:
+        tbd
+    """
 
         pass
 
 
     def initialize_main_window(self):
+        """Show the Main window to which the other scenes are added to. also show the load window initially
 
-
+    Args:
+        verbosity: Level of logging verbosity.
+    """
         self.MainWindow.setWindowOpacity(0)
         self.loadWindow = LoadWindow(scene_tree=self, MainWindow=self.SideWindow)
         
@@ -93,7 +108,11 @@ class SceneTree:
         pass
 
     def setup_windows(self):
+        """Show the Default mode window initially
 
+        Args:
+            verbosity: Level of logging verbosity.
+        """
         self.active_scene = DefaultScene(self.command)
         self.active_scene.setupUi(self.branch)
         return

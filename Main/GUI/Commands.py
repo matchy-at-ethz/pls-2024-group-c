@@ -3,7 +3,7 @@ import webbrowser
 
 class CommandStruct:
     """
-    Used to hold the Commands orginating from the GUI.
+    Used to hold the Commands orginating from the GUI and other places.
     """
 
     def __init__(self, scene_tree):
@@ -23,13 +23,15 @@ class CommandStruct:
 
 
     def openConfig(self):
-         pass
+        pass
     
 
     def saveConfig(self):
-         pass
+        pass
     
     def exit(self):
+        """Closes the application, Doesnt save the configurations
+    """
         self.SceneTree.MainWindow.close()
         pass
     
@@ -39,6 +41,11 @@ class CommandStruct:
     
 
     def open_url(self, url):
+        """Open a Link in the default Browser
+
+        Args:
+            url(str):  Url which should be opened
+        """
         try:
             # Open the URL in the default web browser
             webbrowser.open(url)
@@ -48,7 +55,11 @@ class CommandStruct:
 
 
     def loadWeb(self, url):
-            """Load content from a given URL."""
+            """Load content from a given URL.
+            
+            Args:
+                url(str):  Url which should be opened
+            """
             try:
                 # Make a GET request to the URL
                 response = requests.get(url)
