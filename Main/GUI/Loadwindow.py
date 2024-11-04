@@ -18,7 +18,6 @@ class LoadWindow(object):
         
         # Load and scale the image
         self.MainWindow = MainWindow
-        self.MainWindow.setIconVisibleInMenu(False)
         self.MainWindow.setModal(True)
         image = Image.open(os.path.join(ROOT_DIR,r"Resources\image.png"))
         new_size = (image.width // 5, image.height // 5)
