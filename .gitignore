@@ -163,3 +163,4 @@ cython_debug/
 
 ### Proejct sepecific ignores
 Contributions/Alain/RetiredCode.py
+Contributions/Nora/Simulation_no_abstraction.ipynb
