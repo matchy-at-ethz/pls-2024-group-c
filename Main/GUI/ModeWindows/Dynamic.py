@@ -1,6 +1,3 @@
-import tkinter as tk
-from tkinter import filedialog, ttk, font
-import Pmw
 from pathlib import Path
 import os
 import sys
@@ -24,11 +21,9 @@ class DynamicScene(BaseScene):
 
     def initializeWidgets(self):
 
-        self.ParametersPanel.config(background="orange")
-        self.PlotPanel.config(background="blue")
+        pass
 
-        self.StartButton = tk.Button(master= self.ParametersPanel, text="start", command= self.runAnalysis)
-        self.StartButton.place(x=200, y=200)
+
 
     @property
     def parameters(self):
@@ -36,7 +31,7 @@ class DynamicScene(BaseScene):
         return 
     
     def runAnalysis(self):
-        print("2")
+
         thread = threading.Thread(target= lambda : self.SceneTree.processes.runAnalysis(self.parameters))
         thread.start()    
 

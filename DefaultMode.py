@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\alain\source\repos\pls-2024-group-c\Stuff.ui'
+# Form implementation generated from reading ui file 'D:\LifeScienceProjects\pls-2024-group-c\DefaultMode.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -11,14 +11,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class DefaultScene(object):
-
-    def __init__(self, commands):
-        self.commands = commands
-
-
+class Ui_Form(object):
     def setupUi(self, Form):
-
         Form.setObjectName("Form")
         Form.resize(1158, 702)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
