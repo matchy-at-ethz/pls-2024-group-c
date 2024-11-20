@@ -3,14 +3,9 @@ import os
 import sys
 import threading
 
-if __name__ == "__main__":
-    from BaseScene import BaseScene
 
 
-if not __name__ == "__main__":
-    from .BaseScene import BaseScene
-
-class ExpandedScene(BaseScene):
+class ExpandedScene():
 
     def __init__(self, master, scene_tree):
 
@@ -18,28 +13,30 @@ class ExpandedScene(BaseScene):
 
         self.initializeWidgets() 
 
-    def initializeWidgets(self):
+
+    def connect_actions(self):
+        """Connects Actions to the corresponding Commands"""
+        self.pushButton.clicked.connect(lambda : self.commands.start_default(
+            self.parameters
+            ))
+        
+
+        # self.pushButton_2.clicked.connect(self.commands.save_figure)
+        # self.pushButton_3.clicked.connect(self.commands.close_figure)
+        # self.pushButton_4.clicked.connect(self.commands.add_figure)
 
         pass
+
+
+    def add_figure_to_display(self):
+        pass
+
+
+
 
     @property
     def parameters(self):
+        """returns the parameters required to run the analysis"""
+        parameters = {}
 
-        return
-    
-    def runAnalysis(self):
-
-        thread = threading.Thread(target= lambda : self.SceneTree.processes.runAnalysis(self.parameters))
-        thread.start()    
-
-    # ------------------------------------------------------------------------
-    # event based functions
-    
-    def _on_enabled(self):
-        pass
-
-    def _on_disabled(self):
-        pass
-
-    def _on_simulation_completed(self):
-        pass
+        return parameters

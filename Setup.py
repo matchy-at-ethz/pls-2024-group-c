@@ -17,7 +17,7 @@ setup(
     version=VERSION,  # noqa: F821 # the yellow underline is fine
     packages=find_packages(),
     entry_points={
-        "console_scripts": ["gillespie-gui=Main.GUI.App:main",
+        "console_scripts": ["gillespie-gui=App:main",
         "gillespie-simulate= Main.App:main"],
     },
     install_requires=INSTALL_REQUIRES,

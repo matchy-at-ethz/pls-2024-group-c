@@ -4,23 +4,15 @@ import sys
 from PyQt5 import QtWidgets
 from qtpy.QtWidgets import QApplication
 
-if __name__ == "__main__":                          #I COULDNT FIGURE OUT WHY FOR THE LOVE OF GOD IT REQUIRES DIFFERENT IMPORT PATHS REGARDING HOW IT IS RUN
-    from Commands import CommandStruct
-    from ModeWindows.Default import DefaultScene
-    from ModeWindows.Expanded import ExpandedScene
-    from ModeWindows.Dynamic import DynamicScene
-    from Processes import ProcessStruct
-    from Loadwindow import LoadWindow
-    from Mainwindow_Ui import Ui_MainWindow
+                     #I COULDNT FIGURE OUT WHY FOR THE LOVE OF GOD IT REQUIRES DIFFERENT IMPORT PATHS REGARDING HOW IT IS RUN
+from Main.GUI.Commands import CommandStruct
+from Main.GUI.ModeWindows.Default import DefaultScene
+from Main.GUI.ModeWindows.Expanded import ExpandedScene
+from Main.GUI.ModeWindows.Dynamic import DynamicScene
+from Main.GUI.Loadwindow import LoadWindow
+from Main.GUI.Mainwindow_Ui import Ui_MainWindow
+from Main.Utilities.Processes import ProcessStruct
 
-if not __name__ == "__main__":
-    from .Commands import CommandStruct
-    from .ModeWindows.Default import DefaultScene
-    from .ModeWindows.Expanded import ExpandedScene
-    from .ModeWindows.Dynamic import DynamicScene
-    from .Processes import ProcessStruct
-    from .Loadwindow import LoadWindow
-    from .Mainwindow_Ui import Ui_MainWindow
 
 ROOT_DIR: Path = Path(__file__).parent.parent.parent.resolve()
 exec(open(ROOT_DIR / "Projectconfiguration.py", encoding="utf-8").read())
@@ -55,7 +47,7 @@ class SceneTree:
         """Initializes the Attributes of the class
     """
         self.current_scene = None
-        self.processes = ProcessStruct(self)
+        self.processes = ProcessStruct()
         self.command = CommandStruct(self)
 
         self.SideWindow = QtWidgets.QDialog()

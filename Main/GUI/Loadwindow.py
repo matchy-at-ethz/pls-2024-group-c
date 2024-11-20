@@ -3,7 +3,7 @@ from PIL import Image
 from pathlib import Path
 import os
 
-from Projectconfiguration import ROOT_DIR, VERSION, NAME, LOADSCREEN_IMAGE
+from Projectconfiguration import ROOT_DIR, VERSION, NAME, LOADSCREEN_IMAGE, COLOUR
 
 class LoadWindow(object):
     """
@@ -43,14 +43,14 @@ class LoadWindow(object):
         self.label_image = QtWidgets.QLabel(self.MainWindow)
         self.label_image.setPixmap(pixmap)
         self.label_image.setGeometry(0, 0, new_size[0], new_size[1])
-        self.label_image.backgroundColor = QtGui.QColor("#BE632E")
+        self.label_image.backgroundColor = QtGui.QColor()
         
         # Add banner at the bottom of the image
         banner_height = int(new_size[1] * 0.2 +1)
         self.banner = QtWidgets.QFrame(self.MainWindow )
-        self.banner.backgroundColor = QtGui.QColor("#BE632E")
+        self.banner.backgroundColor = QtGui.QColor(COLOUR)
         self.banner.setGeometry(0, int(new_size[1] * 0.8), new_size[0], banner_height)
-        self.banner.setStyleSheet("background-color: #BE632E;")
+        self.banner.setStyleSheet(f"background-color: {COLOUR};")
 
         # Title label
         title_font = QtGui.QFont("Times", 30)

@@ -1,8 +1,6 @@
 README.md
 setup.py
-Main/App.py
 Main/__init__.py
-Main/GUI/App.py
 Main/GUI/Interface.py
 Main/Utilities/DataStructModule.py
 Main/Utilities/PlotStructModule.py

@@ -8,9 +8,9 @@ class ProcessStruct:
     Min Says Multithreading or multiprocessing isn't very useful in python so do not focus on this.
     I intended this to manage multiprocessing
     """
-    def __init__(self, scene_tree):
+    def __init__(self):
 
-        self.SceneTree = scene_tree
+        pass
 
     
     def runAnalysis(self, *args, **kwargs):
