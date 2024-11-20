@@ -3,9 +3,7 @@ from PIL import Image
 from pathlib import Path
 import os
 
-
-ROOT_DIR: Path = Path(__file__).parent.parent.parent.resolve()
-exec(open(ROOT_DIR / "Projectconfiguration.py", encoding="utf-8").read())
+from Projectconfiguration import ROOT_DIR, VERSION, NAME, LOADSCREEN_IMAGE
 
 class LoadWindow(object):
     """
@@ -19,8 +17,8 @@ class LoadWindow(object):
         # Load and scale the image
         self.MainWindow = MainWindow
         self.MainWindow.setModal(True)
-        image = Image.open(os.path.join(ROOT_DIR,r"Resources\image.png"))
-        new_size = (image.width // 5, image.height // 5)
+        image = Image.open(os.path.join(ROOT_DIR,f"Resources\{LOADSCREEN_IMAGE}"))
+        new_size = (image.width // 2, image.height // 2)
         scaled_image = image.resize(new_size)
 
         # Convert PIL image to data that can be used with QPixmap

@@ -4,8 +4,7 @@ from qtpy.QtGui import QIcon
 from pathlib import Path
 import os
 
-ROOT_DIR: Path = Path(__file__).parent.parent.parent.resolve()
-exec(open(ROOT_DIR / "Projectconfiguration.py", encoding="utf-8").read())
+from Projectconfiguration import NAME,VERSION, GIT, DOCUMENTATION, RELEASES
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, ROOT_DIR, commands):

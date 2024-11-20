@@ -5,7 +5,7 @@ import logging
 import sys
 from enum import Enum
 
-from .Interface import SceneTree
+from Main.GUI.Interface import SceneTree
 import Projectconfiguration
 
 LOGGER = logging.getLogger(__name__)
