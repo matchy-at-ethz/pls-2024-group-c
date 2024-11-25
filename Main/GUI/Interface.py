@@ -25,6 +25,8 @@ class SceneTree:
         verbosity: Level of logging verbosity.
     """
 
+
+
     def __init__(self) -> None:
 
         app = QApplication(sys.argv)
@@ -46,14 +48,19 @@ class SceneTree:
     def setup_attributes(self):
         """Initializes the Attributes of the class
     """
-        self.current_scene = None
-        self.processes = ProcessStruct()
         self.command = CommandStruct(self)
+        self.processes = ProcessStruct()
+
+        self.current_scene = None
+        self.scenes = {"Default": DefaultScene(self, self.command),
+              "Expanded": ExpandedScene(self, self.command)
+              }
 
         self.SideWindow = QtWidgets.QDialog()
         self.MainWindow = QtWidgets.QMainWindow()
         self.MainWindow.setWindowOpacity(0)
         self.MainWindow.show()
+
         
 
         self.screen_geometry = QApplication.primaryScreen().geometry()
@@ -95,6 +102,16 @@ class SceneTree:
         self.screen.setupUi(self.MainWindow, ROOT_DIR , commands = self.command)
         self.branch = self.screen.frame
 
+        self.gridLayout = QtWidgets.QHBoxLayout(self.branch)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setObjectName("gridLayout")
+
+        for value in self.scenes.values():
+            value.setupUi(self.branch)
+            value.frame.hide()
+        
+        self.swich_scene("Default")
+
 
     def loaddata(self):
         pass
@@ -105,9 +122,24 @@ class SceneTree:
         Args:
             verbosity: Level of logging verbosity.
         """
-        self.active_scene = DefaultScene(self.command)
-        self.active_scene.setupUi(self.branch)
         return
+    
+    def swich_scene(self, name):
+
+        if name == self.current_scene:
+            return
+        
+        if self.current_scene is None:
+            self.scenes[name].frame.show()
+            self.current_scene = name
+            return
+        
+        
+        self.scenes[self.current_scene].frame.hide()
+        self.scenes[name].frame.show()
+        self.current_scene = name
+        
+
 
 
     def setup_event_bindings(self):

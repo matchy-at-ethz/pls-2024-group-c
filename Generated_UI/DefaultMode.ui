@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1158</width>
+    <width>1156</width>
     <height>702</height>
    </rect>
   </property>
@@ -73,6 +73,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>545</width>
+          <height>700</height>
+         </size>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -81,7 +87,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_41">
          <item>
-          <widget class="QGroupBox" name="groupBox_3">
+          <widget class="QGroupBox" name="proteinGroupBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>75</horstretch>
@@ -160,10 +166,10 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QComboBox" name="comboBox_13"/>
+                   <widget class="QComboBox" name="nameComboBox1"/>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="comboBox_4"/>
+                   <widget class="QComboBox" name="nameComboBox2"/>
                   </item>
                   <item>
                    <spacer name="verticalSpacer_20">
@@ -238,10 +244,10 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_15"/>
+                   <widget class="QSpinBox" name="cSpinBox1"/>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_16"/>
+                   <widget class="QSpinBox" name="cSpinBox1_2"/>
                   </item>
                  </layout>
                 </widget>
@@ -316,10 +322,10 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
+                   <widget class="QDoubleSpinBox" name="intjDDoubleSpinBox1"/>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_5"/>
+                   <widget class="QDoubleSpinBox" name="intjDDoubleSpinBox2"/>
                   </item>
                  </layout>
                 </widget>
@@ -406,7 +412,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_2">
+                   <widget class="QRadioButton" name="tfRadioButton1">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -419,7 +425,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_3">
+                   <widget class="QRadioButton" name="tfRadioButton1_2">
                     <property name="text">
                      <string/>
                     </property>
@@ -448,7 +454,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_2">
+          <widget class="QGroupBox" name="mrnaGroupBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -547,7 +553,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QComboBox" name="comboBox_7"/>
+                   <widget class="QComboBox" name="mRNANameComboBox1"/>
                   </item>
                   <item>
                    <spacer name="verticalSpacer_13">
@@ -624,7 +630,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QComboBox" name="comboBox_8"/>
+                   <widget class="QComboBox" name="mRNANameComboBox1_2"/>
                   </item>
                   <item>
                    <spacer name="verticalSpacer_14">
@@ -726,7 +732,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QComboBox" name="comboBox_5"/>
+                   <widget class="QComboBox" name="mRNAEncodeComboBox1"/>
                   </item>
                   <item>
                    <spacer name="verticalSpacer_11">
@@ -803,7 +809,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QComboBox" name="comboBox_6"/>
+                   <widget class="QComboBox" name="mRNAEncodeComboBox2"/>
                   </item>
                   <item>
                    <spacer name="verticalSpacer_12">
@@ -905,7 +911,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_7">
+                   <widget class="QSpinBox" name="mRNAConcSpinBox1">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -989,7 +995,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_8">
+                   <widget class="QSpinBox" name="mRNAConcSpinBox1_2">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -1146,14 +1152,14 @@
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QLabel" name="label_18">
+                         <widget class="QLabel" name="mRNAParamLabel1A">
                           <property name="text">
                            <string>TextLabel</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
+                         <widget class="QDoubleSpinBox" name="mRNAParamDoubleSpinBox1A"/>
                         </item>
                        </layout>
                       </widget>
@@ -1180,14 +1186,14 @@
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QLabel" name="label_19">
+                         <widget class="QLabel" name="mRNAParamLabel1B">
                           <property name="text">
                            <string>TextLabel</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QDoubleSpinBox" name="doubleSpinBox_7"/>
+                         <widget class="QDoubleSpinBox" name="mRNAParamDoubleSpinBox1B"/>
                         </item>
                        </layout>
                       </widget>
@@ -1260,14 +1266,14 @@
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QLabel" name="label_17">
+                         <widget class="QLabel" name="mRNAParamLabel2A">
                           <property name="text">
                            <string>TextLabel</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QDoubleSpinBox" name="doubleSpinBox_5"/>
+                         <widget class="QDoubleSpinBox" name="mRNAParamDoubleSpinBox2A"/>
                         </item>
                        </layout>
                       </widget>
@@ -1294,14 +1300,14 @@
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QLabel" name="label_16">
+                         <widget class="QLabel" name="mRNAParamLabel2B">
                           <property name="text">
                            <string>TextLabel</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
+                         <widget class="QDoubleSpinBox" name="mRNAParamDoubleSpinBox2B"/>
                         </item>
                        </layout>
                       </widget>
@@ -1338,7 +1344,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_22">
                <item>
-                <widget class="QLabel" name="label_13">
+                <widget class="QLabel" name="mRNALabel">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1346,7 +1352,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>TextLabel</string>
+                  <string>TBD</string>
                  </property>
                 </widget>
                </item>
@@ -1396,7 +1402,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_10">
+                   <widget class="QSpinBox" name="mRNATBDDoubleSpinBox1">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -1480,7 +1486,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_9">
+                   <widget class="QSpinBox" name="mRNATBDDoubleSpinBox2">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -1549,7 +1555,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QGroupBox" name="groupBox">
+             <widget class="QGroupBox" name="ParameterGroupBox">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                 <horstretch>10</horstretch>
@@ -1562,7 +1568,7 @@
                </font>
               </property>
               <property name="title">
-               <string>GroupBox</string>
+               <string>GroupBoxName1</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_15">
                <item>
@@ -1590,9 +1596,9 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label">
+                   <widget class="QLabel" name="label1">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Parameter1</string>
                     </property>
                    </widget>
                   </item>
@@ -1610,7 +1616,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="comboBox"/>
+                   <widget class="QComboBox" name="label1ComboBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1640,9 +1646,9 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_2">
+                   <widget class="QLabel" name="label2">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Parameter2</string>
                     </property>
                    </widget>
                   </item>
@@ -1660,7 +1666,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="comboBox_2"/>
+                   <widget class="QComboBox" name="label2ComboBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1690,9 +1696,9 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_3">
+                   <widget class="QLabel" name="label3">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Parameter3</string>
                     </property>
                    </widget>
                   </item>
@@ -1710,7 +1716,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="spinBox"/>
+                   <widget class="QSpinBox" name="label3SpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1740,9 +1746,9 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_12">
+                   <widget class="QLabel" name="label4">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Parameter4</string>
                     </property>
                    </widget>
                   </item>
@@ -1760,7 +1766,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+                   <widget class="QDoubleSpinBox" name="label4doubleSpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1790,9 +1796,9 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_14">
+                   <widget class="QLabel" name="label5">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Parameter5</string>
                     </property>
                    </widget>
                   </item>
@@ -1810,7 +1816,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+                   <widget class="QDoubleSpinBox" name="label5doubleSpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1840,9 +1846,9 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_15">
+                   <widget class="QLabel" name="label6">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Parameter6</string>
                     </property>
                    </widget>
                   </item>
@@ -1860,7 +1866,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
+                   <widget class="QDoubleSpinBox" name="label6doubleSpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1890,9 +1896,9 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_22">
+                   <widget class="QLabel" name="label7">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Parameter7</string>
                     </property>
                    </widget>
                   </item>
@@ -1910,7 +1916,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="comboBox_3"/>
+                   <widget class="QComboBox" name="label7ComboBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1919,7 +1925,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox_4">
+             <widget class="QGroupBox" name="transcriptionFactorsGroupBox">
               <property name="title">
                <string>Transcription Factors</string>
               </property>
@@ -1992,7 +1998,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QComboBox" name="comboBox_9"/>
+                      <widget class="QComboBox" name="tfNameComboBox1"/>
                      </item>
                      <item>
                       <spacer name="verticalSpacer_24">
@@ -2069,7 +2075,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QComboBox" name="comboBox_10"/>
+                      <widget class="QComboBox" name="tfNameComboBox2"/>
                      </item>
                      <item>
                       <spacer name="verticalSpacer_26">
@@ -2171,7 +2177,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QComboBox" name="comboBox_11"/>
+                      <widget class="QComboBox" name="tfEncodesComboBox1"/>
                      </item>
                      <item>
                       <spacer name="verticalSpacer_28">
@@ -2248,7 +2254,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QComboBox" name="comboBox_12"/>
+                      <widget class="QComboBox" name="tfEncodesComboBox2"/>
                      </item>
                      <item>
                       <spacer name="verticalSpacer_30">
@@ -2350,7 +2356,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QSpinBox" name="spinBox_17">
+                      <widget class="QSpinBox" name="tfConcSpinBox1">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -2434,7 +2440,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QSpinBox" name="spinBox_18">
+                      <widget class="QSpinBox" name="tfConcSpinBox2">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -2485,7 +2491,7 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_37">
                   <item>
-                   <widget class="QLabel" name="label_24">
+                   <widget class="QLabel" name="tfLabel4">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -2493,7 +2499,7 @@
                      </sizepolicy>
                     </property>
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>TBD</string>
                     </property>
                    </widget>
                   </item>
@@ -2543,7 +2549,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
+                      <widget class="QDoubleSpinBox" name="tfTBDSpinBox1"/>
                      </item>
                      <item>
                       <spacer name="verticalSpacer_36">
@@ -2620,7 +2626,7 @@
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QDoubleSpinBox" name="doubleSpinBox_9"/>
+                      <widget class="QDoubleSpinBox" name="tfTBDSpinBox1_2"/>
                      </item>
                      <item>
                       <spacer name="verticalSpacer_38">
@@ -2713,16 +2719,16 @@
                 <number>4</number>
                </property>
                <property name="leftMargin">
-                <number>9</number>
+                <number>0</number>
                </property>
                <property name="topMargin">
-                <number>9</number>
+                <number>0</number>
                </property>
                <property name="rightMargin">
-                <number>9</number>
+                <number>0</number>
                </property>
                <property name="bottomMargin">
-                <number>9</number>
+                <number>0</number>
                </property>
                <item>
                 <widget class="QFrame" name="frame_54">
@@ -2785,7 +2791,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_3"/>
+                   <widget class="QSpinBox" name="trajectoriesSpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -2851,7 +2857,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="spinBox_2"/>
+                   <widget class="QSpinBox" name="stepsSpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -2911,7 +2917,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="startPushButton">
               <property name="text">
                <string>Start</string>
               </property>
@@ -2979,28 +2985,28 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="closeFigurePushButton">
              <property name="text">
               <string>Close Figure</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="addFigurePushButton">
              <property name="text">
               <string>Add Figure</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="saveFigurePushButton">
              <property name="text">
               <string>Save Figure</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QToolButton" name="toolButton">
+            <widget class="QToolButton" name="figureToolButton">
              <property name="text">
               <string>...</string>
              </property>

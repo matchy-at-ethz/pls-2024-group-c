@@ -14,6 +14,8 @@ class CommandStruct:
 
 
     def switchScene(self, scene : str):
+
+        self.SceneTree.swich_scene(scene)
         pass
 
     def change_mode(self, scene : str):
@@ -27,6 +29,15 @@ class CommandStruct:
     
 
     def saveConfig(self):
+        pass
+
+    def save_figure(self):
+        pass
+
+    def close_figure(self):
+        pass
+
+    def add_figure(self):
         pass
     
     def exit(self):

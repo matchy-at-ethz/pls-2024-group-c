@@ -187,7 +187,7 @@ class Ui_MainWindow(object):
         self.toolBar_2.addSeparator()
         self.toolBar_2.addAction(self.actionExpanded)
         self.toolBar_3.addAction(self.actionCreate_Plot)
-        self.create_menu_actions()
+        self.connect_menu_actions()
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -241,7 +241,11 @@ class Ui_MainWindow(object):
         self.actionExpanded.setShortcut(_translate("MainWindow", "Ctrl+E"))
 
 
-    def create_menu_actions(self):
+    def connect_menu_actions(self):
+
+        self.actionExpanded.triggered.connect(lambda : self.commands.switchScene("Expanded"))
+        self.actionDefault.triggered.connect(lambda : self.commands.switchScene("Default"))
+
                     
         self.actionExit.triggered.connect(lambda : self.commands.exit())
 
