@@ -78,10 +78,11 @@ def setup_logging(verbosity: str = "INFO") -> None:
 
 def main() -> None:
     """Entry point for CLI executable."""
-    app = SceneTree()  # Assuming Root is the main Tkinter window class 
+    app = SceneTree()  # Assuming Root is the main Tkinter window class
 
     LOGGER.info("GUI closed.")
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()

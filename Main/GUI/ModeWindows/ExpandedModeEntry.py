@@ -9,14 +9,17 @@ class EntryBox(object):
         self.parent = parent
         self.index = index
 
-
     def setupUi(self, Form):
 
         self.proteinGroupBox = QtWidgets.QGroupBox(Form)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.proteinGroupBox.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.proteinGroupBox.sizePolicy().hasHeightForWidth()
+        )
         self.proteinGroupBox.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -84,13 +87,17 @@ class EntryBox(object):
         self.verticalLayout_6.addLayout(self.horizontalLayout_11)
         self.horizontalLayout_15 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_15.setObjectName("horizontalLayout_15")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_15.addItem(spacerItem)
         self.removePushButton = QtWidgets.QPushButton(self.proteinGroupBox)
         self.removePushButton.setObjectName("removePushButton")
         self.horizontalLayout_15.addWidget(self.removePushButton)
         self.verticalLayout_6.addLayout(self.horizontalLayout_15)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+        )
         self.verticalLayout_6.addItem(spacerItem1)
         self.verticalLayout.addLayout(self.verticalLayout_6)
         self.horizontalLayout_12.addLayout(self.verticalLayout)
@@ -108,7 +115,9 @@ class EntryBox(object):
         self.label_5 = QtWidgets.QLabel(self.frame_8)
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_4.addWidget(self.label_5)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem2 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_4.addItem(spacerItem2)
         self.tfRadioButton = QtWidgets.QRadioButton(self.frame_8)
         self.tfRadioButton.setText("")
@@ -123,7 +132,9 @@ class EntryBox(object):
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.label_6 = QtWidgets.QLabel(self.frame_8)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
@@ -133,7 +144,9 @@ class EntryBox(object):
         self.targetComboBox = QtWidgets.QComboBox(self.frame_8)
         self.targetComboBox.setObjectName("targetComboBox")
         self.horizontalLayout_5.addWidget(self.targetComboBox)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem3 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_5.addItem(spacerItem3)
         self.removeTFPushButton = QtWidgets.QPushButton(self.frame_8)
         self.removeTFPushButton.setObjectName("removeTFPushButton")
@@ -141,7 +154,9 @@ class EntryBox(object):
         self.verticalLayout_7.addLayout(self.horizontalLayout_5)
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem4 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_6.addItem(spacerItem4)
         self.comboBox = QtWidgets.QComboBox(self.frame_8)
         self.comboBox.setCurrentText("")
@@ -154,7 +169,9 @@ class EntryBox(object):
         self.verticalLayout_8.addLayout(self.verticalLayout_7)
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem5 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_7.addItem(spacerItem5)
         self.addTargetPushButton = QtWidgets.QPushButton(self.frame_8)
         self.addTargetPushButton.setObjectName("addTargetPushButton")
@@ -179,7 +196,9 @@ class EntryBox(object):
         self.label_7 = QtWidgets.QLabel(self.frame_9)
         self.label_7.setObjectName("label_7")
         self.horizontalLayout_8.addWidget(self.label_7)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem6 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_8.addItem(spacerItem6)
         self.mRNARadioButton = QtWidgets.QRadioButton(self.frame_9)
         self.mRNARadioButton.setText("")
@@ -199,7 +218,9 @@ class EntryBox(object):
         self.targetComboBox_2 = QtWidgets.QComboBox(self.frame_9)
         self.targetComboBox_2.setObjectName("targetComboBox_2")
         self.horizontalLayout_9.addWidget(self.targetComboBox_2)
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem7 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_9.addItem(spacerItem7)
         self.removemRNAPushButton = QtWidgets.QPushButton(self.frame_9)
         self.removemRNAPushButton.setObjectName("removemRNAPushButton")
@@ -207,7 +228,9 @@ class EntryBox(object):
         self.verticalLayout_11.addLayout(self.horizontalLayout_9)
         self.horizontalLayout_18 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_18.setObjectName("horizontalLayout_18")
-        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem8 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_18.addItem(spacerItem8)
         self.comboBox_2 = QtWidgets.QComboBox(self.frame_9)
         self.comboBox_2.setObjectName("comboBox_2")
@@ -219,7 +242,9 @@ class EntryBox(object):
         self.verticalLayout_10.addLayout(self.verticalLayout_11)
         self.horizontalLayout_19 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_19.setObjectName("horizontalLayout_19")
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem9 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_19.addItem(spacerItem9)
         self.addTargetPushButton_2 = QtWidgets.QPushButton(self.frame_9)
         self.addTargetPushButton_2.setObjectName("addTargetPushButton_2")
@@ -228,7 +253,6 @@ class EntryBox(object):
         self.verticalLayout_9.addLayout(self.verticalLayout_10)
         self.verticalLayout_4.addWidget(self.frame_9)
         self.horizontalLayout_12.addLayout(self.verticalLayout_4)
-
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -250,11 +274,8 @@ class EntryBox(object):
         self.removemRNAPushButton.setText(_translate("Form", "Remove"))
         self.addTargetPushButton_2.setText(_translate("Form", "Add Target"))
 
-
     def connect_actions(self):
         """Connects Actions to the corresponding Commands"""
-
-        
 
         # -------------------------------------------------------------
         # Internal to this Widget and its children
@@ -269,11 +290,10 @@ class EntryBox(object):
         parameters = {}
 
         return parameters
-    
+
     # ------------------------------------------------------------------
     # Events
 
     def _on_closing(self, number):
-        
-        self.parent._on_EntryBox_removed(self.index)
 
+        self.parent._on_EntryBox_removed(self.index)

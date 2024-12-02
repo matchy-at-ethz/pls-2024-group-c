@@ -3,26 +3,24 @@ import os
 import sys
 import threading
 
-class DynamicScene():
+
+class DynamicScene:
 
     def __init__(self, master, scene_tree):
 
         super().__init__(master, scene_tree)
 
-        self.initializeWidgets() 
+        self.initializeWidgets()
 
     def initializeWidgets(self):
 
         pass
 
-
-
     def connect_actions(self):
         """Connects Actions to the corresponding Commands"""
-        self.pushButton.clicked.connect(lambda : self.commands.start_default(
-            self.parameters
-            ))
-        
+        self.pushButton.clicked.connect(
+            lambda: self.commands.start_default(self.parameters)
+        )
 
         # self.pushButton_2.clicked.connect(self.commands.save_figure)
         # self.pushButton_3.clicked.connect(self.commands.close_figure)
@@ -30,12 +28,8 @@ class DynamicScene():
 
         pass
 
-
     def add_figure_to_display(self):
         pass
-
-
-
 
     @property
     def parameters(self):

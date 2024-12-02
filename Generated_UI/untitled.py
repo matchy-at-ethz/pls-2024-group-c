@@ -19,10 +19,14 @@ class Ui_MainWindow(object):
         font.setPointSize(8)
         MainWindow.setFont(font)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.centralwidget.sizePolicy().hasHeightForWidth()
+        )
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -38,7 +42,9 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.treeView)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_2.addItem(spacerItem)
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName("pushButton_2")
@@ -52,7 +58,9 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.horizontalLayout.addLayout(self.verticalLayout)
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(9)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
@@ -192,11 +200,15 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Add"))
         self.toolButton.setText(_translate("MainWindow", "..."))
         self.menuData.setTitle(_translate("MainWindow", "Data"))
-        self.menuExport_Config_to.setTitle(_translate("MainWindow", "Export Config to.."))
+        self.menuExport_Config_to.setTitle(
+            _translate("MainWindow", "Export Config to..")
+        )
         self.menuView.setTitle(_translate("MainWindow", "View"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.menuAnalyze.setTitle(_translate("MainWindow", "Analyze"))
-        self.menuExport_History_to.setTitle(_translate("MainWindow", "Export History to "))
+        self.menuExport_History_to.setTitle(
+            _translate("MainWindow", "Export History to ")
+        )
         self.menuOptions.setTitle(_translate("MainWindow", "Options"))
         self.menuMode.setTitle(_translate("MainWindow", "Mode"))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
@@ -233,6 +245,7 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

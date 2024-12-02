@@ -1,21 +1,28 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PIL import Image
+import os
 
-from Main.GUI.ModeWindows.ExpandedModeEntry import EntryBox 
+from Main.GUI.ModeWindows.ExpandedModeEntry import EntryBox
+from Projectconfiguration import ROOT_DIR
 
 
-class ExpandedScene():
+class ExpandedScene:
 
     def __init__(self, parent, commands):
         self.parent = parent
         self.commands = commands
 
         self.entry_boxes = []
+        self.figures = []
+        self.current_page = [0,None]
         pass
 
     def setupUi(self, branch):
         self.gridLayout = self.parent.gridLayout
         self.frame = QtWidgets.QFrame(branch)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
@@ -28,7 +35,9 @@ class ExpandedScene():
         self.horizontalLayout_2.setSpacing(4)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.frame_3 = QtWidgets.QFrame(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred
+        )
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
@@ -40,7 +49,9 @@ class ExpandedScene():
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_3)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.frame_5 = QtWidgets.QFrame(self.frame_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(12)
         sizePolicy.setHeightForWidth(self.frame_5.sizePolicy().hasHeightForWidth())
@@ -64,7 +75,9 @@ class ExpandedScene():
         self.verticalLayout_2.addWidget(self.scrollArea)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem10 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_3.addItem(spacerItem10)
         self.addProteinPushButton = QtWidgets.QPushButton(self.frame_5)
         self.addProteinPushButton.setObjectName("addProteinPushButton")
@@ -89,7 +102,9 @@ class ExpandedScene():
         self.verticalLayout_40.setSpacing(4)
         self.verticalLayout_40.setObjectName("verticalLayout_40")
         self.groupBox_5 = QtWidgets.QGroupBox(self.frame_52)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_5.sizePolicy().hasHeightForWidth())
@@ -108,12 +123,16 @@ class ExpandedScene():
         self.horizontalLayout_17.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_17.setSpacing(0)
         self.horizontalLayout_17.setObjectName("horizontalLayout_17")
-        spacerItem11 = QtWidgets.QSpacerItem(424, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem11 = QtWidgets.QSpacerItem(
+            424, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_17.addItem(spacerItem11)
         self.label_26 = QtWidgets.QLabel(self.frame_54)
         self.label_26.setObjectName("label_26")
         self.horizontalLayout_17.addWidget(self.label_26)
-        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacerItem12 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_17.addItem(spacerItem12)
         self.trajectoriesSpinBox = QtWidgets.QSpinBox(self.frame_54)
         self.trajectoriesSpinBox.setObjectName("trajectoriesSpinBox")
@@ -127,12 +146,16 @@ class ExpandedScene():
         self.horizontalLayout_16.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_16.setSpacing(0)
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        spacerItem13 = QtWidgets.QSpacerItem(419, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem13 = QtWidgets.QSpacerItem(
+            419, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_16.addItem(spacerItem13)
         self.label_25 = QtWidgets.QLabel(self.frame_53)
         self.label_25.setObjectName("label_25")
         self.horizontalLayout_16.addWidget(self.label_25)
-        spacerItem14 = QtWidgets.QSpacerItem(40, 10, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacerItem14 = QtWidgets.QSpacerItem(
+            40, 10, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_16.addItem(spacerItem14)
         self.stepsSpinBox = QtWidgets.QSpinBox(self.frame_53)
         self.stepsSpinBox.setObjectName("stepsSpinBox")
@@ -141,7 +164,9 @@ class ExpandedScene():
         self.verticalLayout_40.addWidget(self.groupBox_5)
         self.verticalLayout_3.addWidget(self.frame_52)
         self.frame_2 = QtWidgets.QFrame(self.frame_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
@@ -156,7 +181,9 @@ class ExpandedScene():
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setSpacing(4)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem15 = QtWidgets.QSpacerItem(427, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem15 = QtWidgets.QSpacerItem(
+            427, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout.addItem(spacerItem15)
         self.startPushButton = QtWidgets.QPushButton(self.frame_2)
         self.startPushButton.setObjectName("startPushButton")
@@ -164,7 +191,9 @@ class ExpandedScene():
         self.verticalLayout_3.addWidget(self.frame_2)
         self.horizontalLayout_2.addWidget(self.frame_3)
         self.frame_4 = QtWidgets.QFrame(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(75)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
@@ -180,17 +209,15 @@ class ExpandedScene():
         self.horizontalLayout_21.setObjectName("horizontalLayout_21")
         self.stackedWidget = QtWidgets.QStackedWidget(self.frame_4)
         self.stackedWidget.setObjectName("stackedWidget")
-        self.page_5 = QtWidgets.QWidget()
-        self.page_5.setObjectName("page_5")
-        self.stackedWidget.addWidget(self.page_5)
-        self.page_6 = QtWidgets.QWidget()
-        self.page_6.setObjectName("page_6")
-        self.stackedWidget.addWidget(self.page_6)
+        self.stackedWidget.setSizePolicy(sizePolicy)
         self.horizontalLayout_21.addWidget(self.stackedWidget)
+        self.create_navigation_buttons()
         self.verticalLayout_25.addLayout(self.horizontalLayout_21)
         self.horizontalLayout_20 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_20.setObjectName("horizontalLayout_20")
-        spacerItem16 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem16 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
         self.horizontalLayout_20.addItem(spacerItem16)
         self.closeFigurePushButton = QtWidgets.QPushButton(self.frame_4)
         self.closeFigurePushButton.setObjectName("closeFigurePushButton")
@@ -207,12 +234,15 @@ class ExpandedScene():
         self.verticalLayout_25.addLayout(self.horizontalLayout_20)
         self.horizontalLayout_2.addWidget(self.frame_4)
         self.gridLayout.addWidget(self.frame)
+        
 
         self.retranslateUi(branch)
         QtCore.QMetaObject.connectSlotsByName(branch)
         self.connect_actions()
         self.addEntryBox()
         self.addEntryBox()
+        self.add_image_page("Panda.png")
+        self.add_image_page("Alderson.png")
 
     def retranslateUi(self, Form):
 
@@ -230,14 +260,12 @@ class ExpandedScene():
         self.saveFigurePushButton.setText(_translate("Form", "Save Figure"))
         self.figureToolButton.setText(_translate("Form", "..."))
 
-
     def connect_actions(self):
         """Connects Actions to the corresponding Commands"""
-        self.startPushButton.clicked.connect(lambda : self.commands.start_default(
-            self.parameters
-            ))
-        
-        
+        self.startPushButton.clicked.connect(
+            lambda: self.commands.start_default(self.parameters)
+        )
+
         self.saveFigurePushButton.clicked.connect(self.commands.save_figure)
         self.closeFigurePushButton.clicked.connect(self.commands.close_figure)
         self.addFigurePushButton.clicked.connect(self.commands.add_figure)
@@ -249,9 +277,8 @@ class ExpandedScene():
 
         pass
 
-
     def addEntryBox(self):
-        
+
         var = EntryBox(self, len(self.entry_boxes))
         var.setupUi(self.scrollAreaWidgetContents_2)
 
@@ -263,10 +290,75 @@ class ExpandedScene():
 
         self.entry_boxes.append(var)
 
+    def create_navigation_buttons(self):
+        """Create next and previous buttons and place them in the upper-right corner."""
+        self.nav_widget = QtWidgets.QWidget(self.frame)
+        self.nav_layout = QtWidgets.QHBoxLayout(self.nav_widget)
+        self.nav_layout.setContentsMargins(0, 0, 0, 0)
+        self.nav_layout.addStretch()
 
-    def add_figure_to_display(self):
-        pass
+        # Previous button
+        self.prev_button = QtWidgets.QPushButton("◄", self.frame)
+        self.prev_button.setFixedSize(30, 30)
+        self.prev_button.clicked.connect(self.previous_page)
+        self.nav_layout.addWidget(self.prev_button)
 
+        # Next button
+        self.next_button = QtWidgets.QPushButton("►", self.frame)
+        self.next_button.setFixedSize(30, 30)
+        self.next_button.clicked.connect(self.next_page)
+        self.nav_layout.addWidget(self.next_button)
+
+        # Add the navigation layout to the stacked widget
+        self.verticalLayout_25.addWidget(self.nav_widget, alignment=QtCore.Qt.AlignTop | QtCore.Qt.AlignRight)
+
+    def add_image_page(self, image_name):
+        # Load image using PIL
+        image_path = os.path.join(ROOT_DIR, f"Resources\Graphs\{image_name}")
+
+        image = Image.open(image_path)
+        qt_image = self.pil_to_qt_image(image)
+
+        # Create a new widget for the page
+        page = QtWidgets.QWidget()
+        layout = QtWidgets.QVBoxLayout(page)
+
+        # QLabel to hold the image
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
+        label_image = QtWidgets.QLabel(page)
+        label_image.setAlignment(QtCore.Qt.AlignCenter)
+        label_image.setSizePolicy(sizePolicy)
+        layout.addWidget(label_image)
+        
+        # Scale and set the image
+        self.scale_and_set_pixmap(label_image, qt_image, scale = page.size())
+
+        # Add the page to the stacked widget
+        self.stackedWidget.addWidget(page)
+        self.stackedWidget.setCurrentWidget(page)
+
+    def pil_to_qt_image(self, pil_image):
+        pil_image = pil_image.convert("RGBA")
+        data = pil_image.tobytes("raw", "RGBA")
+        qt_image = QtGui.QImage(
+            data,
+            pil_image.width,
+            pil_image.height,
+            QtGui.QImage.Format_RGBA8888
+        )
+        return qt_image
+
+    def scale_and_set_pixmap(self, label, qt_image, scale):
+        # Scale the pixmap to fit the stacked widget while maintaining aspect ratio
+        pixmap = QtGui.QPixmap.fromImage(qt_image)
+        scaled_pixmap = pixmap.scaled(
+            scale,
+            QtCore.Qt.KeepAspectRatio,
+            QtCore.Qt.SmoothTransformation
+        )
+        label.setPixmap(scaled_pixmap)
 
     @property
     def parameters(self):
@@ -274,7 +366,7 @@ class ExpandedScene():
         parameters = {}
 
         return parameters
-    
+
     # ------------------------------------------------------------------
     # Events
 
@@ -285,14 +377,14 @@ class ExpandedScene():
         pass
 
     def _on_EntryBox_removed(self, number):
-        
+
         entry_boxes = []
         for index in len(self.entry_boxes):
             if index == number:
 
                 self.scrollAreaWidgetContents_2.removeWidget()
                 continue
-                
+
             box = self.entry_boxes[index]
             box.index = len(entry_boxes)
             entry_boxes.append(box)
@@ -300,4 +392,14 @@ class ExpandedScene():
 
         self.entry_boxes = entry_boxes
 
+    def next_page(self):
+        """Go to the next page in the stacked widget."""
+        current_index = self.stackedWidget.currentIndex()
+        next_index = (current_index + 1) % self.stackedWidget.count()
+        self.stackedWidget.setCurrentIndex(next_index)
 
+    def previous_page(self):
+        """Go to the previous page in the stacked widget."""
+        current_index = self.stackedWidget.currentIndex()
+        prev_index = (current_index - 1 + self.stackedWidget.count()) % self.stackedWidget.count()
+        self.stackedWidget.setCurrentIndex(prev_index)

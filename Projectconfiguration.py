@@ -1,4 +1,5 @@
 """Single source of truth for package version."""
+
 from pathlib import Path
 
 ROOT_DIR: Path = Path(__file__).parent.resolve()
@@ -11,5 +12,3 @@ MAIL = "hi"
 AUTHOR = "Group C"
 LOADSCREEN_IMAGE = "Alderson.png"
 COLOUR = "#BE632E"
-
-
