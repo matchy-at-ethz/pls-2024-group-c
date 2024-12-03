@@ -144,6 +144,10 @@ class SceneTree:
     def exit_fullscreen(self, event=None):
         pass
 
+    def update_preset_list(self):
+        
+        pass
+
     # ------------------------------------------------------------------------
     # event based functions
 

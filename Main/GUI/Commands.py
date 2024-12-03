@@ -1,5 +1,12 @@
+import os
+
 import requests
 import webbrowser
+from PyQt5 import QtWidgets
+
+from Projectconfiguration import ROOT_DIR
+from Main.Utilities.DataStructModule import DataStruct
+from Main.Utilities.PlotStructModule import PlotStruct
 
 class CommandStruct:
     """
@@ -11,6 +18,19 @@ class CommandStruct:
         self.SceneTree = scene_tree
 
         pass
+
+    def run_simulation(self, data_path : str):
+    
+        data_struct = DataStruct(data_path)
+
+        #TODO Run Sim
+
+        plot_struct = PlotStruct(data_struct)
+        name = plot_struct.plot() #replace with correct name
+        path = os.path.join(ROOT_DIR, f"Resources/ParameterSets/{name}") #return path to image
+        self.SceneTree.scenes[self.SceneTree.current_scene].self.add_image_page(path) #display it
+        pass
+        
 
     def switchScene(self, scene: str):
 
@@ -35,6 +55,83 @@ class CommandStruct:
         pass
 
     def add_figure(self):
+        pass
+
+    def add_preset(self, prefix: str):
+        """
+        Adds a set of parameters(path) to the navigator, not complete
+        """
+        text, ok = QtWidgets.QInputDialog.getText(self.SceneTree.MainWindow, "", "Enter Name:")
+        path= os.path.join(ROOT_DIR, f"Resources/ParameterSets/{prefix}/{text}")
+        valid = self.verify_name(path)
+
+        if not valid:
+            reply = QtWidgets.QMessageBox.question(
+            self.SceneTree.MainWindow,
+            '',
+            "Imvalid name, Would u lyke to retry?",
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+            QtWidgets.QMessageBox.No
+            )
+
+            if reply == QtWidgets.QMessageBox.Yes:
+                self.add_preset()
+                return
+            else:
+                return
+
+        self.create_preset_from_default(name = text, path = path)
+
+        if ok == True:
+            self.SceneTree.screen.add_preset(name = text, path = path)
+
+        pass
+    
+    def verify_name(self, name: str):
+        if name is "":
+            return False
+        return True
+    
+    def create_preset_from_default(self, name: str, path:str):
+        """create the default preset and save it in the correct place"""
+        pass
+
+    def set_preset_active(self, name: str):
+        """Loads a given set of parameters and then changes the hud values to it"""
+
+        err = self.SceneTree.scenes[self.SceneTree.current_scene].load_parameters(name) #load parameters do nothing except display a message if it fails
+        if err:
+            QtWidgets.QMessageBox.about(            
+                self.SceneTree.MainWindow,
+                'Notification',
+                "The selected Preset is Invalid! \n UwU",
+                )
+            return
+
+        self.SceneTree.screen.change_activated_preset(name) #Change the visual appearance in the GUI
+
+        pass
+
+    def remove_preset(self, name):
+
+        reply = QtWidgets.QMessageBox.question(
+            self.SceneTree.MainWindow,
+            'Confirm',
+            "Do you want to proceed?",
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+            QtWidgets.QMessageBox.No
+        )
+
+        if reply == QtWidgets.QMessageBox.Yes:
+            self.delete_preset()
+            self.SceneTree.screen.remove_preset(name)
+        else:
+            return
+        
+    def load_parameters(self, path:str):
+        pass
+
+    def delete_preset(self):
         pass
 
     def exit(self):

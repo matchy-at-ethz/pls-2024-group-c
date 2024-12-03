@@ -4,10 +4,14 @@ from qtpy.QtGui import QIcon
 from pathlib import Path
 import os
 
-from Projectconfiguration import NAME, VERSION, GIT, DOCUMENTATION, RELEASES
+from Projectconfiguration import NAME, VERSION, GIT, DOCUMENTATION, RELEASES, COLOUR
 
 
 class Ui_MainWindow(object):
+    def __init__(self):
+        self.presets = {}
+        self.active_preset = ""
+    
     def setupUi(self, MainWindow, ROOT_DIR, commands):
         self.commands = commands
         MainWindow.setObjectName(f"{NAME} v{VERSION}")
@@ -45,11 +49,23 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        self.treeView = QtWidgets.QTreeView(self.centralwidget)
-        self.treeView.setDragDropMode(QtWidgets.QAbstractItemView.DragDrop)
-        self.treeView.setAnimated(True)
-        self.treeView.setObjectName("treeView")
-        self.verticalLayout.addWidget(self.treeView)
+        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollArea.setSizePolicy(sizePolicy)
+        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(521, 555, 521, 555))
+        self.scrollAreaWidgetContents_2.setSizePolicy(sizePolicy)
+        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.verticalLayout_12.setDirection(QtWidgets.QBoxLayout.BottomToTop) 
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
+        self.verticalLayout_12.addItem(spacerItem)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
+        self.verticalLayout.addWidget(self.scrollArea)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem = QtWidgets.QSpacerItem(
@@ -203,13 +219,14 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        # do
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.menuData.setTitle(f"{NAME} v{VERSION}")
 
-        self.pushButton_2.setText(_translate("MainWindow", "Remove"))
-        self.pushButton.setText(_translate("MainWindow", "Add"))
+        self.pushButton_2.setText(_translate("MainWindow", "Add Default Preset"))
+        self.pushButton.setText(_translate("MainWindow", "Add Expanded Preset"))
         self.toolButton.setText(_translate("MainWindow", "..."))
         self.menuData.setTitle(_translate("MainWindow", "Data"))
         self.menuExport_Config_to.setTitle(
@@ -270,5 +287,103 @@ class Ui_MainWindow(object):
             lambda: self.commands.open_url(DOCUMENTATION)
         )
         self.actionReleases.triggered.connect(lambda: self.commands.open_url(RELEASES))
-
+        self.pushButton.clicked.connect(lambda:self.commands.add_preset("Expanded"))
+        self.pushButton_2.clicked.connect(lambda:self.commands.add_preset("Default"))
         pass
+
+
+    def add_preset(self, name: str, path: str):
+        if self.active_preset is "":
+            self.active_preset = name
+
+        frame = QtWidgets.QFrame(self.scrollAreaWidgetContents_2)
+        
+        if "Default" in path:
+            color1 = "#FFFFFF"
+
+        else:
+            color1 = "#FFFF00"
+
+        frame.setStyleSheet(f"background-color: {color1};")
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+        )
+        frame.setSizePolicy(sizePolicy)
+        hbox = QtWidgets.QHBoxLayout(frame)
+        spacer = QtWidgets.QSpacerItem(
+            0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred
+        )
+        label = QtWidgets.QPushButton(frame)
+        pushbutton = QtWidgets.QPushButton(frame)
+
+        label.setText(name)
+        label.setSizePolicy(sizePolicy)
+        label.setFixedHeight(20)
+        pushbutton.setText("X")
+        pushbutton.setFixedSize(20, 20) 
+        pushbutton.setSizePolicy(sizePolicy)
+        pushbutton.clicked.connect(lambda: self.commands.remove_preset(name))
+        label.clicked.connect(lambda: self.commands.set_preset_active(name))
+
+        hbox.addWidget(label)
+        hbox.addItem(spacer)
+        hbox.addWidget(pushbutton)
+    
+        self.verticalLayout_12.addWidget(frame)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
+
+        entry = {"path" : path, "frame" : frame}
+        self.presets[name] = entry
+        self.verticalLayout_12.update()
+        self.scrollArea.update()
+
+        self.update_values(self.commands.load_parameters(path))
+        self.change_activated_preset(name)
+    
+
+
+    def remove_preset(self, name : str):
+        
+        self.presets[name]["frame"].close()
+        
+        self.presets.pop(name)
+        if name == self.active_preset:
+            
+            self.change_activated_preset(next(iter(self.presets.keys())))
+        
+        
+        
+
+
+    def change_activated_preset(self, name:str):
+        if name == self.active_preset:
+            return
+
+        if "Default" in self.presets[name]["path"]:
+            color2 = "#F00000"
+        
+        if not "Default" in self.presets[name]["path"]:
+            color2 = COLOUR
+
+        try:
+            if "Default" in self.presets[self.active_preset]["path"]:
+                color1 = "#FFFFFF"
+            
+            if not "Default" in self.presets[self.active_preset]["path"]:
+                color1 = "#FFFF00"
+
+            self.presets[self.active_preset]["frame"].setStyleSheet(f"background-color: {color1};")
+        except:
+            pass
+        self.active_preset = name
+        self.presets[self.active_preset]["frame"].setStyleSheet(f"background-color: {color2};")
+        pass
+
+
+    def update_values(self, new_values):
+        pass
+
+
+    
+
+

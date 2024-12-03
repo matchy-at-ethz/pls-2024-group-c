@@ -1449,10 +1449,9 @@ class DefaultScene(object):
         self.saveFigurePushButton.clicked.connect(self.commands.save_figure)
         self.closeFigurePushButton.clicked.connect(self.commands.close_figure)
         self.addFigurePushButton.clicked.connect(self.commands.add_figure)
+        self.startPushButton.clicked.connect(lambda: self.commands.run_simulation(self.parameters))
         pass
 
-    def add_figure_to_display(self):
-        pass
 
     def create_navigation_buttons(self):
         """Create next and previous buttons and place them in the upper-right corner."""
@@ -1526,7 +1525,7 @@ class DefaultScene(object):
 
     @property
     def parameters(self):
-        """returns the parameters required to run the analysis"""
+        """Gather the Parameters and saves them in a fiel and then returns the Path to the file"""
         parameters = {}
 
         return parameters
@@ -1551,3 +1550,7 @@ class DefaultScene(object):
         current_index = self.stackedWidget.currentIndex()
         prev_index = (current_index - 1 + self.stackedWidget.count()) % self.stackedWidget.count()
         self.stackedWidget.setCurrentIndex(prev_index)
+    
+    def load_parameters(self, name:int):
+        """Load preset given by the path and returns error if invalid"""
+        return False

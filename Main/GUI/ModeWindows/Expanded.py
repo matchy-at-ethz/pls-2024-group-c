@@ -269,7 +269,7 @@ class ExpandedScene:
         self.saveFigurePushButton.clicked.connect(self.commands.save_figure)
         self.closeFigurePushButton.clicked.connect(self.commands.close_figure)
         self.addFigurePushButton.clicked.connect(self.commands.add_figure)
-
+        self.startPushButton.clicked.connect(lambda:self.commands.start(self.parameters))
         # -------------------------------------------------------------
         # Internal to this Widget and its children
 
@@ -362,7 +362,7 @@ class ExpandedScene:
 
     @property
     def parameters(self):
-        """returns the parameters required to run the analysis"""
+        """Gather the Parameters and saves them in a fiel and then returns the Path to the file"""
         parameters = {}
 
         return parameters
@@ -374,6 +374,7 @@ class ExpandedScene:
         """
         Called when the widget should be closed
         """
+
         pass
 
     def _on_EntryBox_removed(self, number):
@@ -403,3 +404,7 @@ class ExpandedScene:
         current_index = self.stackedWidget.currentIndex()
         prev_index = (current_index - 1 + self.stackedWidget.count()) % self.stackedWidget.count()
         self.stackedWidget.setCurrentIndex(prev_index)
+
+    def set_parameters(self, name:str):
+        """set preset given by the path and returns error if invalid"""
+        return False
