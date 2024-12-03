@@ -25,12 +25,12 @@ class PlotStruct:
 
     def __del__(self):
 
-        self.saveFig()
+        plt.saveFig()
 
     # ------------------------------------------
     # Utilities
 
-    def createPlotRandTraject(self, n2plot):
+    def createPlotRandTraject(self, n2plot, path):
 
         is2plot = np.random.choice(
             list(range(self.data.trajectories)), size=n2plot, replace=False
@@ -107,15 +107,15 @@ class PlotStruct:
             axis += 1
 
             continue
-        plt.show()
+        plt.savefig(path)
         return
 
     def clearAll(self):
         plt.close("all")
 
-    def saveFig(self):
+    def saveFig(self, path):
 
         if self.figure == None:
             return
 
-        plt.savefig(self.outputPath)
+        plt.savefig(path)

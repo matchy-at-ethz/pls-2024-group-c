@@ -1393,6 +1393,7 @@ class DefaultScene(object):
 
         self.retranslateUi(branch)
         QtCore.QMetaObject.connectSlotsByName(branch)
+        self.connect_actions()
         self.add_image_page("Panda.png")
         self.add_image_page("Alderson.png")
 
@@ -1401,24 +1402,24 @@ class DefaultScene(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.proteinGroupBox.setTitle(_translate("Form", "Protein"))
         self.label_4.setText(_translate("Form", "Name"))
-        self.label_5.setText(_translate("Form", "[c] initial"))
+        self.label_5.setText(_translate("Form", "am. initial"))
         self.label_6.setText(_translate("Form", "Intj"))
         self.label_7.setText(_translate("Form", "Transcription Factor"))
         self.mrnaGroupBox.setTitle(_translate("Form", "mRNA"))
         self.label_8.setText(_translate("Form", "Name"))
         self.label_9.setText(_translate("Form", "Encodes"))
-        self.label_10.setText(_translate("Form", "[c] initial"))
+        self.label_10.setText(_translate("Form", "am. initial"))
         self.label_11.setText(_translate("Form", "parameters"))
         self.mRNAParamLabel1A.setText(_translate("Form", "TextLabel"))
         self.mRNAParamLabel1B.setText(_translate("Form", "TextLabel"))
         self.mRNAParamLabel2A.setText(_translate("Form", "TextLabel"))
         self.mRNAParamLabel2B.setText(_translate("Form", "TextLabel"))
-        self.mRNALabel.setText(_translate("Form", "TBD"))
+        self.mRNALabel.setText(_translate("Form", "Decayrate"))
         self.ParameterGroupBox.setTitle(_translate("Form", "GroupBoxName1"))
         self.label1.setText(_translate("Form", "Parameter1"))
         self.label2.setText(_translate("Form", "Parameter2"))
-        self.label3.setText(_translate("Form", "Parameter3"))
-        self.label4.setText(_translate("Form", "Parameter4"))
+        self.label3.setText(_translate("Form", "complexform."))
+        self.label4.setText(_translate("Form", "Dissociat."))
         self.label5.setText(_translate("Form", "Parameter5"))
         self.label6.setText(_translate("Form", "Parameter6"))
         self.label7.setText(_translate("Form", "Parameter7"))
@@ -1427,8 +1428,8 @@ class DefaultScene(object):
         )
         self.label_20.setText(_translate("Form", "Name"))
         self.label_21.setText(_translate("Form", "Encodes"))
-        self.label_23.setText(_translate("Form", "[c] initial"))
-        self.tfLabel4.setText(_translate("Form", "TBD"))
+        self.label_23.setText(_translate("Form", "am. initial"))
+        self.tfLabel4.setText(_translate("Form", "Decayrate"))
         self.label_26.setText(_translate("Form", "Trajectories"))
         self.label_25.setText(_translate("Form", "Steps"))
         self.startPushButton.setText(_translate("Form", "Start"))
@@ -1442,14 +1443,14 @@ class DefaultScene(object):
 
     def connect_actions(self):
         """Connects Actions to the corresponding Commands"""
+        print("io")
         self.startPushButton.clicked.connect(
-            lambda: self.commands.start_default(self.parameters)
+            lambda: self.commands.run_simulation(self.parameters)
         )
 
         self.saveFigurePushButton.clicked.connect(self.commands.save_figure)
         self.closeFigurePushButton.clicked.connect(self.commands.close_figure)
         self.addFigurePushButton.clicked.connect(self.commands.add_figure)
-        self.startPushButton.clicked.connect(lambda: self.commands.run_simulation(self.parameters))
         pass
 
 
@@ -1526,8 +1527,50 @@ class DefaultScene(object):
     @property
     def parameters(self):
         """Gather the Parameters and saves them in a fiel and then returns the Path to the file"""
-        parameters = {}
+        parameters = {
 
+            "protein" :{
+                "1" :
+                {
+                    "init" : self.cSpinBox1.value(),
+                    "decay": self.intjDDoubleSpinBox1.value()
+                },
+
+                "2" :
+                {
+                    "init" : self.cSpinBox1.value(),
+                    "decay": self.intjDDoubleSpinBox1.value()
+                }
+            },
+            "mRNA" : {
+
+                "mirna" : {
+                    "init" :self.mRNAConcSpinBox1.value(),
+                    "decay":self.mRNATBDDoubleSpinBox1.value(),
+                    "alpha_s":self.mRNAParamDoubleSpinBox1A.value(),
+                    "ks": self.mRNAParamDoubleSpinBox1B.value()
+
+                },
+                "tmRNA" : {
+                    "init" :self.mRNAConcSpinBox1_2.value(),
+                    "decay":self.mRNATBDDoubleSpinBox2.value(),
+                    "alpha_s":self.mRNAParamDoubleSpinBox2A.value(),
+                    "ks": self.mRNAParamDoubleSpinBox2B.value()
+                }
+            },
+            "TF" : {
+                "init" :self.mRNAConcSpinBox1_2.value(),
+                "decay":self.mRNATBDDoubleSpinBox2.value(),
+                "alpha_s":self.mRNAParamDoubleSpinBox2A.value()
+                },
+
+            "beta" : self.label3SpinBox.value(),
+            "muc" : self.label4doubleSpinBox.value(),
+            "pir" : self.label5doubleSpinBox.value(),
+            "trajectories" : self.trajectoriesSpinBox.value(),
+            "steps" : self.stepsSpinBox.value()
+            }
+        
         return parameters
 
     # ------------------------------------------------------------------

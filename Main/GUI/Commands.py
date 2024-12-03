@@ -1,4 +1,5 @@
 import os
+import random
 
 import requests
 import webbrowser
@@ -7,6 +8,7 @@ from PyQt5 import QtWidgets
 from Projectconfiguration import ROOT_DIR
 from Main.Utilities.DataStructModule import DataStruct
 from Main.Utilities.PlotStructModule import PlotStruct
+random.seed(1)
 
 class CommandStruct:
     """
@@ -19,16 +21,18 @@ class CommandStruct:
 
         pass
 
-    def run_simulation(self, data_path : str):
-    
-        data_struct = DataStruct(data_path)
+    def run_simulation(self, data : dict):
+        print("io")
+        data_struct = DataStruct(data)
 
-        #TODO Run Sim
+        for i in range(0, data["steps"]):
+            data_struct.update()
 
         plot_struct = PlotStruct(data_struct)
-        name = plot_struct.plot() #replace with correct name
-        path = os.path.join(ROOT_DIR, f"Resources/ParameterSets/{name}") #return path to image
-        self.SceneTree.scenes[self.SceneTree.current_scene].self.add_image_page(path) #display it
+        name = f"a{random.randint(1, 1000)}b.png"
+        path = os.path.join(ROOT_DIR, f"Resources\Graphs\{name}") #return path to image
+        plot_struct.createPlotRandTraject(2, path) #replace with correct name
+        self.SceneTree.scenes[self.SceneTree.current_scene].add_image_page(name) #display it
         pass
         
 

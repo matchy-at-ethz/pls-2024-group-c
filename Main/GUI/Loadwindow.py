@@ -88,10 +88,10 @@ class LoadWindow(object):
 
         # Simulate loading process
         QtCore.QTimer.singleShot(
-            500, self.update_loading_message
+            1500, self.update_loading_message
         )  # Display "Loading Data" after 1.5 seconds
         QtCore.QTimer.singleShot(
-            500, self.finish_loading
+            2500, self.finish_loading
         )  # Simulate finishing loading after 5 seconds
 
         self.retranslateUi(self.MainWindow)
