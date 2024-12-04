@@ -36,6 +36,17 @@ parameters and visualize the simulation.
 
 ## Installation
 
+### Recommanded pre-setup
+
+Create a virtual environment and activate it before installing the package:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+### Installation via `pip`
+
 Navigate to the root directory of this project, install the dependencies and
 then install this package
 
@@ -67,18 +78,20 @@ See `examples/example.ipynb` for a simple example of how to use the package.
 ### Command Line Interface (CLI)
 
 After installing it as an editable package, one can simply run the simulation
-via running the `gillepsie` command:
+via running the `gillespie` command:
 
 ```bash
-gillepsie --config <path-to-config-file> --plot True
+gillespie --config <path-to-config-file> --plot True
 ```
+
+Currently we support the configuration file in JSON format.
 
 ### Graphical User Interface (GUI)
 
 After installing the package, one can run the GUI via the following command:
 
 ```bash
-gillepsie-gui
+gillespie-gui
 ```
 
 When the application window appears:
@@ -99,7 +112,7 @@ As the simulation runs:
 
 ![Interface](images/interface.png)
 
-### Enjoy exploring and simulating complex scenarios with **Glimpse Simulation**!
+### Enjoy exploring and simulating complex scenarios with **Gillispie Simulation**!
 
 If you encounter any issues or have suggestions for improvement, feel free to
 contribute or open an issue in this repository. Happy simulating!
