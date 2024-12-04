@@ -5,7 +5,7 @@ import random
 
 class Simulation:
 
-    species: Dict[str, None | np.ndarray] = {
+    species: Dict[str, np.ndarray] = {
         "mRNA_TF": None,
         "protein_TF": None,
         "mRNA_T": None,
@@ -30,7 +30,9 @@ class Simulation:
         "pi_R": 0.1,
     }
 
-    def __init__(self, rates=None, num_trajectories=100, steps=1000):
+    def __init__(
+        self, rates=None, num_trajectories=100, steps=1000, initial_states=None
+    ):
         if rates:
             for key in rates:
                 self.rates[key] = rates[key]
@@ -102,10 +104,15 @@ class Simulation:
         for key in self.species:
             self.species[key] = np.zeros((num_trajectories, steps + 1))
 
-    def simulate(self, initial_sates: Dict[str, float]):
+        if initial_states:
+            for key in initial_states:
+                self.species[key][:, 0] = initial_states[key]
+
+    def simulate(self, initial_sates: Dict[str, float] = None):
         T = np.zeros((self.num_trajectories, self.steps + 1))
-        for key in self.species:
-            self.species[key][:, 0] = initial_sates[key]
+        if initial_sates is not None:
+            for key in self.species:
+                self.species[key][:, 0] = initial_sates[key]
 
         for i in range(self.num_trajectories):
             for j in range(self.steps):

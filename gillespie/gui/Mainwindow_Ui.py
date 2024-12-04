@@ -3,6 +3,7 @@ from qtpy.QtGui import QIcon
 
 
 from gillespie import __package__ as NAME, __version__ as VERSION, get_package_root
+from .config import COLOUR, DOCUMENTATION, GIT, RELEASES
 
 
 class Ui_MainWindow(object):

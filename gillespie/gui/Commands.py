@@ -5,8 +5,8 @@ import requests
 import webbrowser
 from PyQt5 import QtWidgets
 
-# from Projectconfiguration import ROOT_DIR
-from ..core import DataStruct, PlotStruct
+from .util import DataStruct, PlotStruct
+from gillespie import get_package_root
 
 random.seed(1)
 
@@ -31,9 +31,7 @@ class CommandStruct:
 
         plot_struct = PlotStruct(data_struct)
         name = f"a{random.randint(1, 1000)}b.png"
-        path = os.path.join(
-            ROOT_DIR, f"Resources\Graphs\{name}"
-        )  # return path to image
+        path = get_package_root() / "assets" / name
         plot_struct.createPlotRandTraject(2, path)  # replace with correct name
         self.SceneTree.scenes[self.SceneTree.current_scene].add_image_page(
             name

@@ -1,0 +1,25 @@
+{
+  "rates": {
+    "a_T": 0.2,
+    "mu_T": 0.01,
+    "pi_T": 0.1,
+    "mu_Q": 0.01,
+    "alpha_s": 0.1,
+    "k_s": 0.1,
+    "mu_s": 0.01,
+    "alpha_R": 0.1,
+    "k_R": 0.1,
+    "mu_R": 0.01,
+    "beta": 0.1,
+    "mu_c": 0.04,
+    "pi_R": 0.1
+  },
+  "initial_states": {
+    "mRNA_TF": 10,
+    "protein_TF": 0,
+    "mRNA_T": 10,
+    "protein_T": 0,
+    "miRNA": 0,
+    "complex": 0
+  }
+}
