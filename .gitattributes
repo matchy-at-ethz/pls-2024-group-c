@@ -28,3 +28,5 @@
 # with the python modules ``pickle``, ``dbm.*``,
 # ``shelve``, ``marshal``, ``anydbm``, & ``bsddb``
 # (among others).
+examples/* linguist-documentation=true
+_to_be_refactored/* linguist-vendored=true
