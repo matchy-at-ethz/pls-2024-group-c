@@ -1,0 +1,38 @@
+[project]
+name = "gillepsie"
+version = "0.1.0"
+description = "A Python implementation of Gillepsie simulation, with GUI"
+authors = [
+    {name = "Alain Bubendor", email = "alain.bubendorf@unibas.ch"},
+    {name = "Rafael Paulo da Silveira", email = "rafael.paulodasilveira@unibas.ch"},
+    {name = "Sena Aydin", email = "sena.aydin@unibas.ch"},
+    {name = "Nora Vocat", email = "nora.vocat@unibas.ch"},
+    {name = "Minghang \"Matchy\" Li", email = "minghang.li@unibas.ch"},
+]
+dependencies = [
+    "PyQt5",
+    "numpy",
+    "matplotlib",
+    "pandas",
+]
+requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "black>=24.10.0",
+    "pylint>=3.3.1",
+    "pre-commit>=4.0.1",
+]
+
+[project.scripts]
+gillepsie = "gillepsie.cli:main"
