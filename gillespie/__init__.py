@@ -56,6 +56,6 @@ __version__ = get_version()
 __package__ = get_package_name()
 
 from .gui import launch_gui
-from .core import *
+from .core import Simulation
 
-__all__ = ["launch_gui"]  # , "simulate"]
+__all__ = ["launch_gui", "Simulation"]

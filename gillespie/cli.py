@@ -28,10 +28,9 @@ def create_parser():
     parser = argparse.ArgumentParser(
         description="Gillespie simulation of TF chemical reaction system."
     )
-    parser.add_argument("--gui", action="store_true", help="Launch the GUI.")
     parser.add_argument("--config", type=str, help="Path to the configuration file.")
-    parser.add_argument("--output", type=str, help="Path to the output file.")
-    parser.add_argument("--seed", type=int, help="Random seed.")
+    # parser.add_argument("--output", type=str, help="Path to the output file.")
+    parser.add_argument("--seed", type=int, help="Random seed.", default=None)
     return parser
 
 
@@ -41,10 +40,6 @@ def main():
     """
     parser = create_parser()
     args = parser.parse_args()
-
-    if args.gui:
-        gui.launch_gui()
-        return
 
     if not args.config:
         parser.error("Configuration file is required.")
