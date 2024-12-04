@@ -3,7 +3,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PIL import Image
 import os
 
-from Projectconfiguration import ROOT_DIR
+from gillepsie import get_package_root
+
 
 class DefaultScene(object):
 
@@ -15,7 +16,7 @@ class DefaultScene(object):
         self.commands = commands
 
         self.figures = []
-        self.current_page = [0,None]
+        self.current_page = [0, None]
 
     def setupUi(self, branch):
         self.gridLayout = self.parent.gridLayout
@@ -1453,7 +1454,6 @@ class DefaultScene(object):
         self.addFigurePushButton.clicked.connect(self.commands.add_figure)
         pass
 
-
     def create_navigation_buttons(self):
         """Create next and previous buttons and place them in the upper-right corner."""
         self.nav_widget = QtWidgets.QWidget(self.frame)
@@ -1474,11 +1474,13 @@ class DefaultScene(object):
         self.nav_layout.addWidget(self.next_button)
 
         # Add the navigation layout to the stacked widget
-        self.verticalLayout_25.addWidget(self.nav_widget, alignment=QtCore.Qt.AlignTop | QtCore.Qt.AlignRight)
+        self.verticalLayout_25.addWidget(
+            self.nav_widget, alignment=QtCore.Qt.AlignTop | QtCore.Qt.AlignRight
+        )
 
     def add_image_page(self, image_name):
         # Load image using PIL
-        image_path = os.path.join(ROOT_DIR, f"Resources\Graphs\{image_name}")
+        image_path = get_package_root() / "assets" / image_name
 
         image = Image.open(image_path)
         qt_image = self.pil_to_qt_image(image)
@@ -1495,9 +1497,9 @@ class DefaultScene(object):
         label_image.setAlignment(QtCore.Qt.AlignCenter)
         label_image.setSizePolicy(sizePolicy)
         layout.addWidget(label_image)
-        
+
         # Scale and set the image
-        self.scale_and_set_pixmap(label_image, qt_image, scale = page.size())
+        self.scale_and_set_pixmap(label_image, qt_image, scale=page.size())
 
         # Add the page to the stacked widget
         self.stackedWidget.addWidget(page)
@@ -1507,10 +1509,7 @@ class DefaultScene(object):
         pil_image = pil_image.convert("RGBA")
         data = pil_image.tobytes("raw", "RGBA")
         qt_image = QtGui.QImage(
-            data,
-            pil_image.width,
-            pil_image.height,
-            QtGui.QImage.Format_RGBA8888
+            data, pil_image.width, pil_image.height, QtGui.QImage.Format_RGBA8888
         )
         return qt_image
 
@@ -1518,9 +1517,7 @@ class DefaultScene(object):
         # Scale the pixmap to fit the stacked widget while maintaining aspect ratio
         pixmap = QtGui.QPixmap.fromImage(qt_image)
         scaled_pixmap = pixmap.scaled(
-            scale,
-            QtCore.Qt.KeepAspectRatio,
-            QtCore.Qt.SmoothTransformation
+            scale, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation
         )
         label.setPixmap(scaled_pixmap)
 
@@ -1528,49 +1525,42 @@ class DefaultScene(object):
     def parameters(self):
         """Gather the Parameters and saves them in a fiel and then returns the Path to the file"""
         parameters = {
-
-            "protein" :{
-                "1" :
-                {
-                    "init" : self.cSpinBox1.value(),
-                    "decay": self.intjDDoubleSpinBox1.value()
+            "protein": {
+                "1": {
+                    "init": self.cSpinBox1.value(),
+                    "decay": self.intjDDoubleSpinBox1.value(),
                 },
-
-                "2" :
-                {
-                    "init" : self.cSpinBox1.value(),
-                    "decay": self.intjDDoubleSpinBox1.value()
-                }
+                "2": {
+                    "init": self.cSpinBox1.value(),
+                    "decay": self.intjDDoubleSpinBox1.value(),
+                },
             },
-            "mRNA" : {
-
-                "mirna" : {
-                    "init" :self.mRNAConcSpinBox1.value(),
-                    "decay":self.mRNATBDDoubleSpinBox1.value(),
-                    "alpha_s":self.mRNAParamDoubleSpinBox1A.value(),
-                    "ks": self.mRNAParamDoubleSpinBox1B.value()
-
+            "mRNA": {
+                "mirna": {
+                    "init": self.mRNAConcSpinBox1.value(),
+                    "decay": self.mRNATBDDoubleSpinBox1.value(),
+                    "alpha_s": self.mRNAParamDoubleSpinBox1A.value(),
+                    "ks": self.mRNAParamDoubleSpinBox1B.value(),
                 },
-                "tmRNA" : {
-                    "init" :self.mRNAConcSpinBox1_2.value(),
-                    "decay":self.mRNATBDDoubleSpinBox2.value(),
-                    "alpha_s":self.mRNAParamDoubleSpinBox2A.value(),
-                    "ks": self.mRNAParamDoubleSpinBox2B.value()
-                }
+                "tmRNA": {
+                    "init": self.mRNAConcSpinBox1_2.value(),
+                    "decay": self.mRNATBDDoubleSpinBox2.value(),
+                    "alpha_s": self.mRNAParamDoubleSpinBox2A.value(),
+                    "ks": self.mRNAParamDoubleSpinBox2B.value(),
+                },
             },
-            "TF" : {
-                "init" :self.mRNAConcSpinBox1_2.value(),
-                "decay":self.mRNATBDDoubleSpinBox2.value(),
-                "alpha_s":self.mRNAParamDoubleSpinBox2A.value()
-                },
+            "TF": {
+                "init": self.mRNAConcSpinBox1_2.value(),
+                "decay": self.mRNATBDDoubleSpinBox2.value(),
+                "alpha_s": self.mRNAParamDoubleSpinBox2A.value(),
+            },
+            "beta": self.label3SpinBox.value(),
+            "muc": self.label4doubleSpinBox.value(),
+            "pir": self.label5doubleSpinBox.value(),
+            "trajectories": self.trajectoriesSpinBox.value(),
+            "steps": self.stepsSpinBox.value(),
+        }
 
-            "beta" : self.label3SpinBox.value(),
-            "muc" : self.label4doubleSpinBox.value(),
-            "pir" : self.label5doubleSpinBox.value(),
-            "trajectories" : self.trajectoriesSpinBox.value(),
-            "steps" : self.stepsSpinBox.value()
-            }
-        
         return parameters
 
     # ------------------------------------------------------------------
@@ -1591,9 +1581,11 @@ class DefaultScene(object):
     def previous_page(self):
         """Go to the previous page in the stacked widget."""
         current_index = self.stackedWidget.currentIndex()
-        prev_index = (current_index - 1 + self.stackedWidget.count()) % self.stackedWidget.count()
+        prev_index = (
+            current_index - 1 + self.stackedWidget.count()
+        ) % self.stackedWidget.count()
         self.stackedWidget.setCurrentIndex(prev_index)
-    
-    def load_parameters(self, name:int):
+
+    def load_parameters(self, name: int):
         """Load preset given by the path and returns error if invalid"""
         return False

@@ -2,7 +2,10 @@ from qtpy import QtWidgets, QtGui, QtCore
 from PIL import Image
 import os
 
-from Projectconfiguration import ROOT_DIR, VERSION, NAME, LOADSCREEN_IMAGE, COLOUR
+# from Projectconfiguration import ROOT_DIR, VERSION, NAME, LOADSCREEN_IMAGE, COLOUR
+
+from gillepsie import get_package_root, __package__ as NAME, __version__ as VERSION
+from .config import COLOUR, LOADSCREEN_IMAGE
 
 
 class LoadWindow(object):
@@ -17,7 +20,7 @@ class LoadWindow(object):
         # Load and scale the image
         self.MainWindow = MainWindow
         self.MainWindow.setModal(True)
-        image = Image.open(os.path.join(ROOT_DIR, f"Resources\{LOADSCREEN_IMAGE}"))
+        image = Image.open(get_package_root() / "assets" / LOADSCREEN_IMAGE)
         new_size = (image.width // 2, image.height // 2)
         scaled_image = image.resize(new_size)
 
@@ -107,4 +110,3 @@ class LoadWindow(object):
     def finish_loading(self):
         self.scene_tree.MainWindow.setWindowOpacity(1)
         self.MainWindow.close()  # Close the window after loading finishes
-        pass

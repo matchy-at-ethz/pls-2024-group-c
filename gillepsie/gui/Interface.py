@@ -1,21 +1,19 @@
 from pathlib import Path
-import os
 import sys
 from PyQt5 import QtWidgets
 from qtpy.QtWidgets import QApplication
 
-# I COULDNT FIGURE OUT WHY FOR THE LOVE OF GOD IT REQUIRES DIFFERENT IMPORT PATHS REGARDING HOW IT IS RUN
-from Main.GUI.Commands import CommandStruct
-from Main.GUI.ModeWindows.Default import DefaultScene
-from Main.GUI.ModeWindows.Expanded import ExpandedScene
-from Main.GUI.ModeWindows.Dynamic import DynamicScene
-from Main.GUI.Loadwindow import LoadWindow
-from Main.GUI.Mainwindow_Ui import Ui_MainWindow
-from Main.Utilities.Processes import ProcessStruct
+from gillepsie import get_package_root
 
+from .Commands import CommandStruct
+from .ModeWindows.Default import DefaultScene
+from .ModeWindows.Expanded import ExpandedScene
+from .ModeWindows.Dynamic import DynamicScene
+from .Loadwindow import LoadWindow
+from .Mainwindow_Ui import Ui_MainWindow
 
-ROOT_DIR: Path = Path(__file__).parent.parent.parent.resolve()
-exec(open(ROOT_DIR / "Projectconfiguration.py", encoding="utf-8").read())
+# NOTE: commented out because it is not implemented yet
+# from ..core.Processes import ProcessStruct
 
 
 class SceneTree:
@@ -46,7 +44,7 @@ class SceneTree:
     def setup_attributes(self):
         """Initializes the Attributes of the class"""
         self.command = CommandStruct(self)
-        self.processes = ProcessStruct()
+        # self.processes = ProcessStruct()
 
         self.current_scene = None
         self.scenes = {
@@ -93,7 +91,7 @@ class SceneTree:
         self.MainWindow.resize(self.window_width, self.window_height)
         self.MainWindow.move(self.x, self.y)
         # self.MainWindow.showFullScreen()
-        self.screen.setupUi(self.MainWindow, ROOT_DIR, commands=self.command)
+        self.screen.setupUi(self.MainWindow, get_package_root(), commands=self.command)
         self.branch = self.screen.frame
 
         self.gridLayout = QtWidgets.QHBoxLayout(self.branch)
@@ -145,7 +143,7 @@ class SceneTree:
         pass
 
     def update_preset_list(self):
-        
+
         pass
 
     # ------------------------------------------------------------------------
@@ -164,8 +162,3 @@ class SceneTree:
 
     def exit(self):
         self.root.destroy()
-
-
-if __name__ == "__main__":
-
-    a = SceneTree()

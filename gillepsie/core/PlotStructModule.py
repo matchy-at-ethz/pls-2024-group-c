@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from .DataStructModule import DataStruct
+from . import DataStruct
 import numpy as np
 
 

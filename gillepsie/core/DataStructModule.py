@@ -6,7 +6,7 @@ class DataStruct:
     # ------------------------------------------
     # Setup
 
-    def __init__(self, data:dict):
+    def __init__(self, data: dict):
         """
         I generally split up the init function for visibillity
         """
@@ -24,13 +24,13 @@ class DataStruct:
         self.concentration_tf_mrna = np.zeros((data["trajectories"], 1))
         self.concentration_tf_mrna[:, 0] = 0
         self.concentration_tf = np.zeros((data["trajectories"], 1))
-        self.concentration_tf[:, 0] = data["TF"]["init" ]
+        self.concentration_tf[:, 0] = data["TF"]["init"]
         self.concentration_mi_rna = np.zeros((data["trajectories"], 1))
         self.concentration_mi_rna[:, 0] = data["mRNA"]["mirna"]["init"]
         self.concentration_t_rna = np.zeros((data["trajectories"], 1))
-        self.concentration_t_rna[:, 0] = data["mRNA"]["tmRNA" ]["init"]
+        self.concentration_t_rna[:, 0] = data["mRNA"]["tmRNA"]["init"]
         self.concentration_t = np.zeros((data["trajectories"], 1))
-        self.concentration_t[:, 0] = data["protein"]["2"]["init"] 
+        self.concentration_t[:, 0] = data["protein"]["2"]["init"]
         self.concentration_complex = np.zeros((data["trajectories"], 1))
         self.concentration_complex[:, 0] = 0
 
@@ -44,12 +44,12 @@ class DataStruct:
         self.mu_q = data["protein"]["1"]["decay"]
         self.alpha_s = data["mRNA"]["mirna"]["alpha_s"]
         self.mu_s = data["mRNA"]["mirna"]["decay"]
-        self.k_r = data["mRNA"]["tmRNA" ]["ks"]
+        self.k_r = data["mRNA"]["tmRNA"]["ks"]
         self.k_s = data["mRNA"]["mirna"]["ks"]  # dont set em to integrs
-        self.alpha_r = data["mRNA"]["tmRNA" ]["alpha_s"]
-        self.mu_r = data["mRNA"]["tmRNA" ]["decay"]
+        self.alpha_r = data["mRNA"]["tmRNA"]["alpha_s"]
+        self.mu_r = data["mRNA"]["tmRNA"]["decay"]
         self.pi_h = 4  # pi_r
-        self.mu_h = data["mRNA"]["tmRNA" ]["decay"]  # mu_r duplikat
+        self.mu_h = data["mRNA"]["tmRNA"]["decay"]  # mu_r duplikat
         self.mu_c = data["muc"]
         self.beta = data["beta"]
 

@@ -1,0 +1,2 @@
+LOADSCREEN_IMAGE = "Alderson.png"
+COLOUR = "#BE632E"

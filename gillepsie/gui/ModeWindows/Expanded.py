@@ -2,8 +2,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PIL import Image
 import os
 
-from Main.GUI.ModeWindows.ExpandedModeEntry import EntryBox
-from Projectconfiguration import ROOT_DIR
+from .ExpandedModeEntry import EntryBox
+
+from gillepsie import get_package_root
 
 
 class ExpandedScene:
@@ -14,7 +15,7 @@ class ExpandedScene:
 
         self.entry_boxes = []
         self.figures = []
-        self.current_page = [0,None]
+        self.current_page = [0, None]
         pass
 
     def setupUi(self, branch):
@@ -234,7 +235,6 @@ class ExpandedScene:
         self.verticalLayout_25.addLayout(self.horizontalLayout_20)
         self.horizontalLayout_2.addWidget(self.frame_4)
         self.gridLayout.addWidget(self.frame)
-        
 
         self.retranslateUi(branch)
         QtCore.QMetaObject.connectSlotsByName(branch)
@@ -269,7 +269,9 @@ class ExpandedScene:
         self.saveFigurePushButton.clicked.connect(self.commands.save_figure)
         self.closeFigurePushButton.clicked.connect(self.commands.close_figure)
         self.addFigurePushButton.clicked.connect(self.commands.add_figure)
-        self.startPushButton.clicked.connect(lambda:self.commands.start(self.parameters))
+        self.startPushButton.clicked.connect(
+            lambda: self.commands.start(self.parameters)
+        )
         # -------------------------------------------------------------
         # Internal to this Widget and its children
 
@@ -310,11 +312,13 @@ class ExpandedScene:
         self.nav_layout.addWidget(self.next_button)
 
         # Add the navigation layout to the stacked widget
-        self.verticalLayout_25.addWidget(self.nav_widget, alignment=QtCore.Qt.AlignTop | QtCore.Qt.AlignRight)
+        self.verticalLayout_25.addWidget(
+            self.nav_widget, alignment=QtCore.Qt.AlignTop | QtCore.Qt.AlignRight
+        )
 
     def add_image_page(self, image_name):
         # Load image using PIL
-        image_path = os.path.join(ROOT_DIR, f"Resources\Graphs\{image_name}")
+        image_path = get_package_root() / "assets" / image_name
 
         image = Image.open(image_path)
         qt_image = self.pil_to_qt_image(image)
@@ -331,9 +335,9 @@ class ExpandedScene:
         label_image.setAlignment(QtCore.Qt.AlignCenter)
         label_image.setSizePolicy(sizePolicy)
         layout.addWidget(label_image)
-        
+
         # Scale and set the image
-        self.scale_and_set_pixmap(label_image, qt_image, scale = page.size())
+        self.scale_and_set_pixmap(label_image, qt_image, scale=page.size())
 
         # Add the page to the stacked widget
         self.stackedWidget.addWidget(page)
@@ -343,10 +347,7 @@ class ExpandedScene:
         pil_image = pil_image.convert("RGBA")
         data = pil_image.tobytes("raw", "RGBA")
         qt_image = QtGui.QImage(
-            data,
-            pil_image.width,
-            pil_image.height,
-            QtGui.QImage.Format_RGBA8888
+            data, pil_image.width, pil_image.height, QtGui.QImage.Format_RGBA8888
         )
         return qt_image
 
@@ -354,9 +355,7 @@ class ExpandedScene:
         # Scale the pixmap to fit the stacked widget while maintaining aspect ratio
         pixmap = QtGui.QPixmap.fromImage(qt_image)
         scaled_pixmap = pixmap.scaled(
-            scale,
-            QtCore.Qt.KeepAspectRatio,
-            QtCore.Qt.SmoothTransformation
+            scale, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation
         )
         label.setPixmap(scaled_pixmap)
 
@@ -402,9 +401,11 @@ class ExpandedScene:
     def previous_page(self):
         """Go to the previous page in the stacked widget."""
         current_index = self.stackedWidget.currentIndex()
-        prev_index = (current_index - 1 + self.stackedWidget.count()) % self.stackedWidget.count()
+        prev_index = (
+            current_index - 1 + self.stackedWidget.count()
+        ) % self.stackedWidget.count()
         self.stackedWidget.setCurrentIndex(prev_index)
 
-    def set_parameters(self, name:str):
+    def set_parameters(self, name: str):
         """set preset given by the path and returns error if invalid"""
         return False

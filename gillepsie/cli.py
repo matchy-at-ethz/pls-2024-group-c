@@ -2,6 +2,7 @@ import argparse
 import logging
 import sys
 from enum import Enum
+
 from . import gui
 
 LOGGER = logging.getLogger(__name__)
