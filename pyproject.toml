@@ -9,30 +9,23 @@ authors = [
     {name = "Nora Vocat", email = "nora.vocat@unibas.ch"},
     {name = "Minghang \"Matchy\" Li", email = "minghang.li@unibas.ch"},
 ]
-dependencies = [
-    "PyQt5",
-    "numpy",
-    "matplotlib",
-    "pandas",
-]
 requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "MIT"}
+dynamic = ["dependencies"]
+
 
 [build-system]
 requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+optional-dependencies = { dev = { file = ["requirements-dev.txt"] } }
+
 [tool.pdm]
 distribution = true
-
-[tool.pdm.dev-dependencies]
-dev = [
-    "black>=24.10.0",
-    "pylint>=3.3.1",
-    "pre-commit>=4.0.1",
-]
 
 [project.scripts]
 gillepsie = "gillepsie.cli:main"
