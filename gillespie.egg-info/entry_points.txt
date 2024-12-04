@@ -1,4 +1,0 @@
-[console_scripts]
-gillespie-gui = App:main
-gillespie-simulate = Main.App:main
-
