@@ -1,5 +1,5 @@
 [project]
-name = "gillepsie"
+name = "gillespie"
 version = "0.1.0"
 description = "A Python implementation of Gillepsie simulation, with GUI"
 authors = [
@@ -9,16 +9,25 @@ authors = [
     {name = "Nora Vocat", email = "nora.vocat@unibas.ch"},
     {name = "Minghang \"Matchy\" Li", email = "minghang.li@unibas.ch"},
 ]
+
 requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "MIT"}
 dynamic = ["dependencies"]
 
 
+[project.scripts]
+gillespie = "gillespie.cli:main"
+
+[project.gui-scripts]
+gillespie-gui = "gillespie.gui:launch_gui"
+
+[project.urls]
+repository = "https://git.scicore.unibas.ch/zavolan_group/teaching_and_tutorials/pls-2024-group-c"
+
 [build-system]
 requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
-
 
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
@@ -27,5 +36,7 @@ optional-dependencies = { dev = { file = ["requirements-dev.txt"] } }
 [tool.pdm]
 distribution = true
 
-[project.scripts]
-gillepsie = "gillepsie.cli:main"
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyx?$'

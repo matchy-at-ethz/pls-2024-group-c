@@ -3,7 +3,7 @@ import sys
 from PyQt5 import QtWidgets
 from qtpy.QtWidgets import QApplication
 
-from gillepsie import get_package_root
+from gillespie import get_package_root
 
 from .Commands import CommandStruct
 from .ModeWindows.Default import DefaultScene

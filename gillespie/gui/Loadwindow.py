@@ -2,9 +2,7 @@ from qtpy import QtWidgets, QtGui, QtCore
 from PIL import Image
 import os
 
-# from Projectconfiguration import ROOT_DIR, VERSION, NAME, LOADSCREEN_IMAGE, COLOUR
-
-from gillepsie import get_package_root, __package__ as NAME, __version__ as VERSION
+from gillespie import get_package_root, __package__ as NAME, __version__ as VERSION
 from .config import COLOUR, LOADSCREEN_IMAGE
 
 

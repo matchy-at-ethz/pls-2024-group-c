@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PIL import Image
 import os
 
-from gillepsie import get_package_root
+from gillespie import get_package_root
 
 
 class DefaultScene(object):

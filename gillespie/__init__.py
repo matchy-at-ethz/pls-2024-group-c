@@ -10,7 +10,7 @@ def get_package_root() -> Path:
 def get_metadata() -> dict:
     """Get the metadata of the package."""
     try:
-        return metadata("gillepsie")
+        return metadata("gillespie")
     except PackageNotFoundError:
         # If package is not installed, read from pyproject.toml
         try:
@@ -35,7 +35,7 @@ def get_version():
     """Get version from installed package or pyproject.toml."""
     try:
         # Try getting version from installed package first
-        return version("gillepsie")
+        return version("gillespie")
     except PackageNotFoundError:
         # If package is not installed, read from pyproject.toml
         try:

@@ -4,7 +4,7 @@ import os
 
 from .ExpandedModeEntry import EntryBox
 
-from gillepsie import get_package_root
+from gillespie import get_package_root
 
 
 class ExpandedScene:

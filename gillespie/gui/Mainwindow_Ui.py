@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from qtpy.QtGui import QIcon
 
 
-from gillepsie import __package__ as NAME, __version__ as VERSION, get_package_root
+from gillespie import __package__ as NAME, __version__ as VERSION, get_package_root
 
 
 class Ui_MainWindow(object):
