@@ -29,6 +29,9 @@ repository = "https://git.scicore.unibas.ch/zavolan_group/teaching_and_tutorials
 requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+packages = {find = {where = [".", ], exclude = ["images", "images.*"]}}
+
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
 optional-dependencies = { dev = { file = ["requirements-dev.txt"] } }
