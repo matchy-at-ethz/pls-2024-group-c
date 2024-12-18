@@ -1,7 +1,7 @@
-from pathlib import Path
 import os
 import sys
 import threading
+from pathlib import Path
 
 
 class DynamicScene:

@@ -1,8 +1,10 @@
 import argparse
 import logging
-import pandas as pd
-from pathlib import Path
 from enum import Enum
+from pathlib import Path
+
+import pandas as pd
+
 from .core import Simulation
 from .core.io import parse
 from .core.plot import plot_all_simulations, plot_all_species

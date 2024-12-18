@@ -1,16 +1,17 @@
-from pathlib import Path
 import sys
+from pathlib import Path
+
 from PyQt5 import QtWidgets
 from qtpy.QtWidgets import QApplication
 
 from gillespie import get_package_root
 
 from .Commands import CommandStruct
-from .ModeWindows.Default import DefaultScene
-from .ModeWindows.Expanded import ExpandedScene
-from .ModeWindows.Dynamic import DynamicScene
 from .Loadwindow import LoadWindow
 from .Mainwindow_Ui import Ui_MainWindow
+from .ModeWindows.Default import DefaultScene
+from .ModeWindows.Dynamic import DynamicScene
+from .ModeWindows.Expanded import ExpandedScene
 
 # NOTE: commented out because it is not implemented yet
 # from ..core.Processes import ProcessStruct

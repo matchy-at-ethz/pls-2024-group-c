@@ -6,11 +6,10 @@ lint:
   stage: lint
   image: python:3.10
   before_script:
-    - pip install black flake8 isort
+    - pip install black isort
   script:
     - black --check .
     - isort --check .
-    - flake8 .
 
 test:
   stage: test

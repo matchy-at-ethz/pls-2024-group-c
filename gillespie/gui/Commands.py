@@ -1,12 +1,13 @@
 import os
 import random
+import webbrowser
 
 import requests
-import webbrowser
 from PyQt5 import QtWidgets
 
-from .util import DataStruct, PlotStruct
 from gillespie import get_package_root
+
+from .util import DataStruct, PlotStruct
 
 random.seed(1)
 

@@ -1,5 +1,5 @@
+from importlib.metadata import PackageNotFoundError, metadata, version
 from pathlib import Path
-from importlib.metadata import metadata, PackageNotFoundError, version
 
 
 def get_package_root() -> Path:
@@ -55,14 +55,14 @@ def get_version():
 __version__ = get_version()
 __package__ = get_package_name()
 
-from .gui import launch_gui
 from .core import Simulation
 from .core.plot import (
-    plot_all_species,
     plot_all_simulations,
-    plot_species,
+    plot_all_species,
     plot_simulation_by_id,
+    plot_species,
 )
+from .gui import launch_gui
 
 __all__ = [
     "launch_gui",

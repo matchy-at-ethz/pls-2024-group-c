@@ -1,10 +1,11 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PIL import Image
 import os
 
-from .ExpandedModeEntry import EntryBox
+from PIL import Image
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 from gillespie import get_package_root
+
+from .ExpandedModeEntry import EntryBox
 
 
 class ExpandedScene:

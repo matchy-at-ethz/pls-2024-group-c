@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-from . import DataStruct
 import numpy as np
+
+from . import DataStruct
 
 
 class PlotStruct:

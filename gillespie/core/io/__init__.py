@@ -1,5 +1,6 @@
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict
+
 from .. import SupportedInput
 from . import csv_parser, json_parser, yaml_parser
 

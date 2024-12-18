@@ -1,8 +1,12 @@
-from qtpy import QtWidgets, QtGui, QtCore
-from PIL import Image
 import os
 
-from gillespie import get_package_root, __package__ as NAME, __version__ as VERSION
+from PIL import Image
+from qtpy import QtCore, QtGui, QtWidgets
+
+from gillespie import __package__ as NAME
+from gillespie import __version__ as VERSION
+from gillespie import get_package_root
+
 from .config import COLOUR, LOADSCREEN_IMAGE
 
 

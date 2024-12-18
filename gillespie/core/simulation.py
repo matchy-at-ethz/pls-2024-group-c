@@ -1,8 +1,8 @@
-import numpy as np
-from typing import Dict
 import random
 import time
-from typing import List, Callable
+from typing import Callable, Dict, List
+
+import numpy as np
 
 from .result import Result
 

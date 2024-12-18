@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PIL import Image
 import os
+
+from PIL import Image
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 from gillespie import get_package_root
 

@@ -1,13 +1,15 @@
-import numpy as np
 import tempfile
 from pathlib import Path
-from gillespie.core.result import Result
+
+import numpy as np
+
 from gillespie.core.plot import (
-    plot_species,
-    plot_simulation_by_id,
-    plot_all_species,
     plot_all_simulations,
+    plot_all_species,
+    plot_simulation_by_id,
+    plot_species,
 )
+from gillespie.core.result import Result
 
 
 def generate_dummy_result():

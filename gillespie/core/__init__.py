@@ -1,6 +1,6 @@
-from .simulation import Simulation
-
 from enum import Enum
+
+from .simulation import Simulation
 
 
 class SupportedInput(Enum):

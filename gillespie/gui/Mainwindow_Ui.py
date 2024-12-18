@@ -1,8 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from qtpy.QtGui import QIcon
 
+from gillespie import __package__ as NAME
+from gillespie import __version__ as VERSION
+from gillespie import get_package_root
 
-from gillespie import __package__ as NAME, __version__ as VERSION, get_package_root
 from .config import COLOUR, DOCUMENTATION, GIT, RELEASES
 
 
