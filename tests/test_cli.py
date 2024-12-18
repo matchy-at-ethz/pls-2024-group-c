@@ -21,7 +21,6 @@ def test_cli():
                 tmpdirname,
                 "--verbosity",
                 "INFO",
-                "--plot",
             ],
             capture_output=True,
             text=True,
