@@ -242,8 +242,7 @@ class ExpandedScene:
         self.connect_actions()
         self.addEntryBox()
         self.addEntryBox()
-        self.add_image_page("Panda.png")
-        self.add_image_page("Alderson.png")
+        self.add_image_page("Panda.png.jpg")
 
     def retranslateUi(self, Form):
 

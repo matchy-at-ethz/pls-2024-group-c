@@ -23,7 +23,7 @@ class LoadWindow(object):
         self.MainWindow = MainWindow
         self.MainWindow.setModal(True)
         image = Image.open(get_package_root() / "assets" / LOADSCREEN_IMAGE)
-        new_size = (image.width // 2, image.height // 2)
+        new_size = (image.width // 6, image.height // 6)
         scaled_image = image.resize(new_size)
 
         # Convert PIL image to data that can be used with QPixmap

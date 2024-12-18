@@ -220,7 +220,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        # do
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -293,6 +292,7 @@ class Ui_MainWindow(object):
         pass
 
     def add_preset(self, name: str, path: str):
+        """Adds a path to parameter savefiles"""
         if self.active_preset == "":
             self.active_preset = name
 
@@ -341,7 +341,7 @@ class Ui_MainWindow(object):
         self.change_activated_preset(name)
 
     def remove_preset(self, name: str):
-
+        """Removes the selected path to data files"""
         self.presets[name]["frame"].close()
 
         self.presets.pop(name)
@@ -350,6 +350,7 @@ class Ui_MainWindow(object):
             self.change_activated_preset(next(iter(self.presets.keys())))
 
     def change_activated_preset(self, name: str):
+        """Changes the selected path to data files"""
         if name == self.active_preset:
             return
 

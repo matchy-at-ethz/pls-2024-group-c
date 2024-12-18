@@ -1396,8 +1396,7 @@ class DefaultScene(object):
         self.retranslateUi(branch)
         QtCore.QMetaObject.connectSlotsByName(branch)
         self.connect_actions()
-        self.add_image_page("Panda.png")
-        self.add_image_page("Alderson.png")
+        self.add_image_page("Panda.png.jpg")
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
