@@ -5,7 +5,7 @@ from pathlib import Path
 from enum import Enum
 from .core import Simulation
 from .core.io import parse
-from .core.plot import visualize_species
+from .core.plot import plot_all_simulations, plot_all_species
 
 LOGGER = logging.getLogger(__name__)
 
@@ -42,11 +42,33 @@ def create_parser():
     parser = argparse.ArgumentParser(
         description="Gillespie simulation of TF chemical reaction system."
     )
-    parser.add_argument("--config", type=str, help="Path to the configuration file.")
-
-    # TODO: add at least the following argument
     parser.add_argument(
-        "--output", type=str, help="Path to the output file.", default=None
+        "--config",
+        type=str,
+        help=(
+            "Path to the configuration file. [required]."
+            "Allowed file formats: .csv, .json, .yaml."
+            "AlloWed keys: rates, initial_states."
+        ),
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        help="Path to the output file. Default to /<current-dir>/output",
+        default=None,
+    )
+
+    parser.add_argument(
+        "--num-simulations",
+        type=int,
+        help="Number of simulations to run. Default is 10.",
+        default=10,
+    )
+    parser.add_argument(
+        "--num-timepoints",
+        type=int,
+        help="Number of timepoints to simulate. Default is 1000.",
+        default=1000,
     )
     parser.add_argument(
         "--verbosity",
@@ -56,9 +78,19 @@ def create_parser():
         help="Logging verbosity level.",
     )
     parser.add_argument(
-        "--plot", action="store_true", help="Plot the results.", default=True
+        "--plot-all-simulations",
+        action="store_true",
+        help="Plot the results of all simulations.",
+        default=False,
     )
-    # parser.add_argument("--seed", type=int, help="Random seed.", default=None)
+    parser.add_argument(
+        "--plot-all-species",
+        action="store_true",
+        help="Plot the results of all species.",
+        default=False,
+    )
+
+    parser.add_argument("--seed", type=int, help="Random seed.", default=None)
     return parser
 
 
@@ -76,9 +108,11 @@ def main():
         sys.exit(1)
 
     config = parse(args.config)
-    sim = Simulation(rates=config["rates"], initial_states=config["initial_states"])
+    sim = Simulation(num_trajectories=args.num_simulations, steps=args.num_timepoints)
     LOGGER.info("Starting simulation.")
-    res = sim.simulate()
+    res = sim.simulate(
+        rates=config["rates"], initial_states=config["initial_states"], seed=args.seed
+    )
     LOGGER.info("Simulation finished.")
     LOGGER.info("Writing results to output directory.")
 
@@ -95,14 +129,25 @@ def main():
             columns=[f"{s}_{i}" for i in range(res.species[s].shape[0])],
         )
         df.to_csv(output_dir / f"{s}.csv", index=False)
-
-    if args.plot:
-        plot_dir = output_dir / "plots"
+    LOGGER.info("Results written to output directory.")
+    plot_dir = output_dir / "plots"
+    # remove the directory if it exists
+    if plot_dir.exists():
+        # remove all files in the directory
+        for file in plot_dir.iterdir():
+            file.unlink()
+        plot_dir.rmdir()
+    if args.plot_all_species:
+        LOGGER.info("Plotting all species.")
         plot_dir.mkdir(exist_ok=True)
-        for s in res.species:
-            visualize_species.plot(
-                res.time, res.species, s, save=True, save_path=plot_dir
-            )
+        plot_all_species(res, save=True, save_path=plot_dir)
+        LOGGER.info("Plots saved to output directory.")
+
+    if args.plot_all_simulations:
+        LOGGER.info("Plotting all simulations.")
+        plot_dir.mkdir(exist_ok=True)
+        plot_all_simulations(res, save=True, save_path=plot_dir)
+        LOGGER.info("Plots saved to output directory.")
 
 
 if __name__ == "__main__":

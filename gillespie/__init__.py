@@ -57,5 +57,18 @@ __package__ = get_package_name()
 
 from .gui import launch_gui
 from .core import Simulation
+from .core.plot import (
+    plot_all_species,
+    plot_all_simulations,
+    plot_species,
+    plot_simulation_by_id,
+)
 
-__all__ = ["launch_gui", "Simulation"]
+__all__ = [
+    "launch_gui",
+    "Simulation",
+    "plot_all_species",
+    "plot_all_simulations",
+    "plot_species",
+    "plot_simulation_by_id",
+]

@@ -1,10 +1,27 @@
 import numpy as np
 from typing import Dict
 import random
+import time
+from typing import List, Callable
+
 from .result import Result
 
 
 class Simulation:
+    """
+    Class to simulate a chemical reaction system using the Gillespie algorithm.
+
+    Attributes:
+    - species: Dictionary of species in the system.
+    - rates: Dictionary of reaction rates.
+    - reactions: List of reaction propensities.
+    - stoichiometry: List of stoichiometries.
+    - num_trajectories: Number of trajectories to simulate.
+
+    Methods:
+    - __init__: Initialize the simulation.
+    - simulate: Run the simulation using the Gillespie algorithm.
+    """
 
     species: Dict[str, np.ndarray] = {
         "mRNA_TF": None,
@@ -15,7 +32,7 @@ class Simulation:
         "complex": None,
     }
 
-    rates = {
+    rates: Dict[str, float] = {
         "a_T": 0.1,
         "mu_T": 0.1,
         "pi_T": 0.1,
@@ -33,9 +50,9 @@ class Simulation:
 
     def __init__(
         self,
-        rates=None,
-        num_trajectories=100,
-        steps=1000,
+        rates: Dict[str, float] = None,
+        num_trajectories: int = 1,
+        steps: int = 100,
         initial_states: Dict[str, float] = None,
     ):
         # update rates if provided
@@ -43,7 +60,7 @@ class Simulation:
             for key in rates:
                 self.rates[key] = rates[key]
 
-        self.reactions = [
+        self.reactions: List[Callable] = [
             # constant transcription of TF mRNA
             lambda _: self.rates["a_T"],
             # constant degradation of TF mRNA
@@ -114,14 +131,36 @@ class Simulation:
             for key in initial_states:
                 self.species[key][:, 0] = initial_states[key]
 
-    def simulate(self, rates=None, initial_sates: Dict[str, float] = None) -> Result:
+    def simulate(
+        self,
+        rates: Dict[str, float] = None,
+        initial_states: Dict[str, float] = None,
+        seed: int = None,
+    ) -> Result:
         """
         Simulate the chemical reaction system using the Gillespie algorithm.
+
+        Args:
+        - rates: Dictionary of reaction rates.
+        - initial_states: Dictionary of initial species concentrations.
+
+        Returns:
+        - Result object containing the simulation results.
         """
+        if rates is not None:
+            for key in rates:
+                self.rates[key] = rates[key]
+
+        if seed is None:
+            # use the current system time as the seed
+            random.seed(time.time())
+        else:
+            random.seed(seed)
+
         T = np.zeros((self.num_trajectories, self.steps + 1))
-        if initial_sates is not None:
+        if initial_states is not None:
             for key in self.species:
-                self.species[key][:, 0] = initial_sates[key]
+                self.species[key][:, 0] = initial_states[key]
 
         for i in range(self.num_trajectories):
             for j in range(self.steps):
@@ -139,7 +178,9 @@ class Simulation:
 
                 # update the state
                 for key in self.species:
-                    self.species[key][i, j + 1] = states[key] + reaction.get(key, 0)
+                    self.species[key][i, j + 1] = max(
+                        states[key] + reaction.get(key, 0), 0
+                    )
 
                 dt = random.expovariate(sum(rates))
                 T[i, j + 1] = T[i, j] + dt
