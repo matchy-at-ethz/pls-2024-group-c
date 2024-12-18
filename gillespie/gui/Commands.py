@@ -96,7 +96,7 @@ class CommandStruct:
         pass
 
     def verify_name(self, name: str):
-        if name is "":
+        if name == "":
             return False
         return True
 
