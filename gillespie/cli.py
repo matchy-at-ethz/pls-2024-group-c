@@ -85,21 +85,24 @@ def main():
     output_dir = Path(args.output) if args.output else Path("output")
     output_dir.mkdir(exist_ok=True)
 
-    T = res[0]
-    time_df = pd.DataFrame(data=T, columns=[f"time_{i}" for i in range(T.shape[1])])
+    time_df = pd.DataFrame(
+        data=res.time, columns=[f"time_{i}" for i in range(res.time.shape[1])]
+    )
     time_df.to_csv(output_dir / "time.csv", index=False)
-    species = res[1]
-    for s in species:
+    for s in res.species:
         df = pd.DataFrame(
-            data=species[s].T, columns=[f"{s}_{i}" for i in range(species[s].shape[0])]
+            data=res.species[s].T,
+            columns=[f"{s}_{i}" for i in range(res.species[s].shape[0])],
         )
         df.to_csv(output_dir / f"{s}.csv", index=False)
 
     if args.plot:
         plot_dir = output_dir / "plots"
         plot_dir.mkdir(exist_ok=True)
-        for s in species:
-            visualize_species.plot(T, species, s, save=True, save_path=plot_dir)
+        for s in res.species:
+            visualize_species.plot(
+                res.time, res.species, s, save=True, save_path=plot_dir
+            )
 
 
 if __name__ == "__main__":

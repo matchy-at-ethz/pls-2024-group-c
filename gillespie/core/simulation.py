@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Dict
 import random
+from .result import Result
 
 
 class Simulation:
@@ -31,8 +32,13 @@ class Simulation:
     }
 
     def __init__(
-        self, rates=None, num_trajectories=100, steps=1000, initial_states=None
+        self,
+        rates=None,
+        num_trajectories=100,
+        steps=1000,
+        initial_states: Dict[str, float] = None,
     ):
+        # update rates if provided
         if rates:
             for key in rates:
                 self.rates[key] = rates[key]
@@ -108,7 +114,10 @@ class Simulation:
             for key in initial_states:
                 self.species[key][:, 0] = initial_states[key]
 
-    def simulate(self, initial_sates: Dict[str, float] = None):
+    def simulate(self, rates=None, initial_sates: Dict[str, float] = None) -> Result:
+        """
+        Simulate the chemical reaction system using the Gillespie algorithm.
+        """
         T = np.zeros((self.num_trajectories, self.steps + 1))
         if initial_sates is not None:
             for key in self.species:
@@ -135,4 +144,4 @@ class Simulation:
                 dt = random.expovariate(sum(rates))
                 T[i, j + 1] = T[i, j] + dt
 
-        return T, self.species
+        return Result(time=T, species=self.species)
