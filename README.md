@@ -81,7 +81,7 @@ After installing it as an editable package, one can simply run the simulation
 via running the `gillespie` command:
 
 ```bash
-gillespie --config <path-to-config-file> --plot True
+gillespie --config <path-to-config-file> --output <output-dir> --plot-all-simulations --plot-all-species
 ```
 
 Currently we support the configuration file in JSON format.
