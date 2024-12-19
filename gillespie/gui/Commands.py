@@ -11,6 +11,8 @@ from .util import DataStruct, PlotStruct
 
 random.seed(1)
 
+ROOT_DIR = get_package_root()
+
 
 class CommandStruct:
     """

@@ -48,9 +48,11 @@ def create_parser():
         "--config",
         type=str,
         help=(
-            "Path to the configuration file. [required]."
-            "Allowed file formats: .csv, .json, .yaml."
-            "AlloWed keys: rates, initial_states."
+            "Path to the configuration file. [required]. "
+            "Allowed file formats: .csv, .json, .yaml. "
+            "Allowed keys: rates, initial_states. "
+            "- Allowed keys in rates: a_T, mu_T, pi_T, mu_Q, alpha_s, k_s, mu_s, alpha_R, k_R, mu_R, beta, mu_c, pi_R."
+            "- Allowed keys in initial_states: mRNA_TF, protein_TF, mRNA_T, protein_T, miRNA, complex."
         ),
     )
     parser.add_argument(
